@@ -1,0 +1,24 @@
+<div class="panel panel-primary" ng-controller="ItemListCtrl as x">
+        <div class="panel-heading"
+         style="font-size:large">{{::x.title}}
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <td>ITEM ID</td>
+                <td>NAME</td>
+                <td>DESCRIPTION</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="items in x.items">
+                <td>{{ items.itemId }} </td>
+                <td>{{ items.itemName }}</td>
+                <td>{{ items.description }}</td>
+            </tr>
+            </tbody>
+        </table>
+</div>
+<div>
+<a class="btn btn-default" ng-click="x.addNewItem()" style="width:200px">Add New Item to List</a>
+</div>
