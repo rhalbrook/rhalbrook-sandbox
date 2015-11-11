@@ -57,12 +57,11 @@ var app;
                         "description": "Learn Ruby & Ruby on Rails (Eventually)"
                     }
                 ];
-                //var newItem = new app.domain.NewItem(11, "GULP", "Learn GULP & GULP BrowserSync");
-                //this.items.push(newItem);
             }
             ;
             ItemListCtrl.prototype.addNewItem = function () {
-                //Do something here
+                var newItem = new app.domain.NewItem(11, "GULP", "Learn GULP & GULP BrowserSync");
+                this.items.push(newItem);
             };
             return ItemListCtrl;
         })();
