@@ -2,25 +2,56 @@
         <div class="panel-heading"
          style="font-size:large">{{::x.title}}
         </div>
-        <table class="table">
+        <table class="table table-hover">
             <thead>
             <tr>
-                <td>ITEM ID</td>
-                <td>NAME</td>
-                <td>DESCRIPTION</td>
-            </tr>
+                <td align="center" width="10%">ITEM ID</td>
+                <td align="left" width="20%">NAME</td>
+                <td align="left" width="63%">DESCRIPTION</td>
+                <td align="center" width="7%"></td>  
+             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="items in x.items">
-                <td>{{ items.itemId }} </td>
-                <td>{{ items.itemName }}</td>
-                <td>{{ items.description }}</td>
-            </tr>
+            <tr class="repeat-item" ng-repeat="items in x.items" ng-click="showDelete=!showDelete;">
+                <td align="center">{{ items.itemId }} </td>
+                <td align="left">{{ items.itemName }}</td>
+                <td align="left">{{ items.description }}</td>
+                <td align="center"><div ng-show="showDelete"><a href="#" ng-click="x.deleteItem(items.itemId)" title="Click here to delete ({{ items.itemId }}) {{ items.itemName }}"><i class="fa fa-times"></i> Delete</a></a></div></td>
+            </tr>          
             </tbody>
+            <tfoot>
+            <tr ng-show="showInputs" class="repeat-item" ng-mouseenter="showCancel=true;" ng-mouseleave="showCancel=false;">
+                <form name="newItem">
+                <td align="center"><input type="text" placeholder="Item ID" style="width: 75px; padding-left: 10px;" ng-model="x.newItem.itemId" /></td>
+                <td align="left"><input type="text" placeholder="Item Name" style="width: 150px; padding-left: 10px;" ng-model="x.newItem.itemName" /></td>
+                <td align="left"><input type="text" placeholder="Item Description" style="width: 300px; padding-left: 10px;" ng-model="x.newItem.description" ng-blur="x.addNewItem(); showInputs=false;" ng-keyup="$event.keyCode == 13 ? x.addNewItem() : null" /></td>
+                <td align="center" ><div ng-show="showCancel" style="padding-top: 3px;"><a href="#" ng-click="x.cancelNewItem(); showInputs=false;" title="Click here to remove the add new item form"><i class="fa fa-times"></i> Cancel</a></div></td>  
+                </form>
+            </tr> 
+            <tr class="repeat-item">
+                <td align="center"></td>
+                <td align="left"></td>
+                <td align="left"></td>
+                <td align="center"></td>
+            </tr>       
+            </tfoot>
         </table>
-        </br>
         <div>
-        <center><a class="btn btn-default" ng-click="x.addNewItem()" style="width:200px">Add New Item to List</a></center>
+        <center><a class="btn btn-default" ng-click="showInputs=true;" style="width:200px">Add New Item to List</a></center>
         </div>
-        </br>
+        <div class="text-primary">
+        <ul>
+                <li style="list-style-type:none"><u>QUESTIONS</u></li>
+                <li>Setting an ng-show or ng-hide from a class function</li>
+                <ul>
+                        <li>Usage: Hide Input boxes on addNewItem from [Enter Key]</li>
+                </ul>
+                <li>Setting focus of an Input Object from a class function</li>
+                <ul>
+                        <li>Usage: Set focus back on the itemId once addNewItem has run</li>
+                </ul>
+                <li>Submitting a new item with [Enter Key] with multi input boxes</li>
+                <li>Submitting a new item with [Object.Blur] with multi input boxes</li>
+        </ul>
+        </div>
 </div>

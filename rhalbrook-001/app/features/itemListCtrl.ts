@@ -1,77 +1,58 @@
 module app.itemList {
 	interface ItemListModel {
 		title: string;
-		items: app.domain.NItem[];
+		items: app.domain.IItem[];
 		addNewItem(): void;
+		cancelNewItem(): void;
+		deleteItem(delItem): void;
 	}
 
 	class ItemListCtrl implements ItemListModel {
 		title: string;
-		items: app.domain.NItem[];
+		newItem: app.domain.IItem;
+		items: app.domain.IItem[];
 
-		constructor() {
+		static $inject=["dataAccessService"];
+		constructor(private dataAccessService: app.common.DataAccessService) {
 			this.title = "Things to Learn";
-			this.items = [
-				{
-					"itemId": 1,
-					"itemName": "Object-Oriented Programming",
-					"description": "Learn Object-Oriented Programming (esp. using TypeScript)"
-				},
-				{
-					"itemId": 2,
-					"itemName": "REST-ful",
-					"description": "Learn REST-ful web services and HTTP request ins-and-outs"
-				},
-				{
-					"itemId": 3,
-					"itemName": "AngularJS",
-					"description": "Learn AngularJS"
-				},
-				{
-					"itemId": 4,
-					"itemName": "Material Design",
-					"description": "Learn Material Design"
-				},
-				{
-					"itemId": 5,
-					"itemName": "TypeScript",
-					"description": "Learn TypeScript"
-				},
-				{
-					"itemId": 6,
-					"itemName": "Jade",
-					"description": "Learn Jade (HTML template creation)"
-				},
-				{
-					"itemId": 7,
-					"itemName": "Git",
-					"description": "Learn Advanced Git for SCM"
-				},
-				{
-					"itemId": 8,
-					"itemName": "Jasmine",
-					"description": "Learn Jasmine for Front-End Unit Testing"
-				},
-				{
-					"itemId": 9,
-					"itemName": "Design Patterns",
-					"description": "Learn Design Patterns (of various flavors, such as Singleton, delegate, observer, etc.)"
-				},
-				{
-					"itemId": 10,
-					"itemName": "Ruby & Ruby on Rails",
-					"description": "Learn Ruby & Ruby on Rails (Eventually)"
-				}
-			];
-		};
-		addNewItem(): void{
-			var newItem = new app.domain.NewItem(11, "GULP", "Learn GULP & GULP BrowserSync");
-					this.items.push(newItem);
-		}
+			this.items = [];
 			
+			var itemResource = dataAccessService.getItemResource();
+			itemResource.query((data: app.domain.IItem[]) => {
+				this.items = data;
+			})
+		};
+		addNewItem(): void {
+			//alert(this.newItem);
+			if (this.newItem) {
+				this.items.push(this.newItem);
+				this.newItem = null;
+			}
+			else {
+				//alert("Uh Uh Uh...No DATA entered");
+			}
+
+		}
+		cancelNewItem(): void {
+			this.newItem = null;
+		}
+		deleteItem(delItem): void {
+			//alert(delItem);				
+			var index = -1;
+			for (var i = 0; i < this.items.length; i++) {
+				if (this.items[i].itemId === delItem) {
+					index = i;
+					break;
+				}
+			}
+			if (index === -1) {
+				alert("Something gone wrong");
+			}
+			this.items.splice(index, 1);
+		};
 	}
 	angular
 		.module("itemListBldr")
 		.controller("ItemListCtrl",
-			ItemListCtrl);
+		ItemListCtrl);
 }

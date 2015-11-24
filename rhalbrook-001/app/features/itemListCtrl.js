@@ -3,66 +3,45 @@ var app;
     var itemList;
     (function (itemList) {
         var ItemListCtrl = (function () {
-            function ItemListCtrl() {
+            function ItemListCtrl(dataAccessService) {
+                var _this = this;
+                this.dataAccessService = dataAccessService;
                 this.title = "Things to Learn";
-                this.items = [
-                    {
-                        "itemId": 1,
-                        "itemName": "Object-Oriented Programming",
-                        "description": "Learn Object-Oriented Programming (esp. using TypeScript)"
-                    },
-                    {
-                        "itemId": 2,
-                        "itemName": "REST-ful",
-                        "description": "Learn REST-ful web services and HTTP request ins-and-outs"
-                    },
-                    {
-                        "itemId": 3,
-                        "itemName": "AngularJS",
-                        "description": "Learn AngularJS"
-                    },
-                    {
-                        "itemId": 4,
-                        "itemName": "Material Design",
-                        "description": "Learn Material Design"
-                    },
-                    {
-                        "itemId": 5,
-                        "itemName": "TypeScript",
-                        "description": "Learn TypeScript"
-                    },
-                    {
-                        "itemId": 6,
-                        "itemName": "Jade",
-                        "description": "Learn Jade (HTML template creation)"
-                    },
-                    {
-                        "itemId": 7,
-                        "itemName": "Git",
-                        "description": "Learn Advanced Git for SCM"
-                    },
-                    {
-                        "itemId": 8,
-                        "itemName": "Jasmine",
-                        "description": "Learn Jasmine for Front-End Unit Testing"
-                    },
-                    {
-                        "itemId": 9,
-                        "itemName": "Design Patterns",
-                        "description": "Learn Design Patterns (of various flavors, such as Singleton, delegate, observer, etc.)"
-                    },
-                    {
-                        "itemId": 10,
-                        "itemName": "Ruby & Ruby on Rails",
-                        "description": "Learn Ruby & Ruby on Rails (Eventually)"
-                    }
-                ];
+                this.items = [];
+                var itemResource = dataAccessService.getItemResource();
+                itemResource.query(function (data) {
+                    _this.items = data;
+                });
             }
             ;
             ItemListCtrl.prototype.addNewItem = function () {
-                var newItem = new app.domain.NewItem(11, "GULP", "Learn GULP & GULP BrowserSync");
-                this.items.push(newItem);
+                //alert(this.newItem);
+                if (this.newItem) {
+                    this.items.push(this.newItem);
+                    this.newItem = null;
+                }
+                else {
+                }
             };
+            ItemListCtrl.prototype.cancelNewItem = function () {
+                this.newItem = null;
+            };
+            ItemListCtrl.prototype.deleteItem = function (delItem) {
+                //alert(delItem);				
+                var index = -1;
+                for (var i = 0; i < this.items.length; i++) {
+                    if (this.items[i].itemId === delItem) {
+                        index = i;
+                        break;
+                    }
+                }
+                if (index === -1) {
+                    alert("Something gone wrong");
+                }
+                this.items.splice(index, 1);
+            };
+            ;
+            ItemListCtrl.$inject = ["dataAccessService"];
             return ItemListCtrl;
         })();
         angular

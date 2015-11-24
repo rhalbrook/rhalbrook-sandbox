@@ -2,14 +2,14 @@ var app;
 (function (app) {
     var domain;
     (function (domain) {
-        var NewItem = (function () {
-            function NewItem(itemId, itemName, description) {
+        var Item = (function () {
+            function Item(itemId, itemName, description) {
                 this.itemId = itemId;
                 this.itemName = itemName;
                 this.description = description;
             }
-            return NewItem;
+            return Item;
         })();
-        domain.NewItem = NewItem;
+        domain.Item = Item;
     })(domain = app.domain || (app.domain = {}));
 })(app || (app = {}));

@@ -1,11 +1,11 @@
 module app.domain {
-	export interface NItem {
+	export interface IItem {
 		itemId: number;
 		itemName: string;
 		description: string;
 	}
 
-	export class NewItem implements NItem {
+	export class Item implements IItem {
 
 		constructor(public itemId: number,
 					public itemName: string,
