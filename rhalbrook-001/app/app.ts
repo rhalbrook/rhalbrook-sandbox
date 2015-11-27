@@ -1,4 +1,13 @@
-module app {
-	angular.module("itemListBldr", ["ngAnimate", "common.services", "itemResourceMock"]);
-	// register your service (and sean will eventually want to see swapping your service w/ one line change here)
-}
+var sinon, FakeRest;
+((): void => {
+  var app;
+  app = angular.module("itemListBldr", ["ngAnimate"]);
+  app.service("dataAccessService", services.MyDataAccessService);
+  
+  console.log("finished angular registrations in facade");
+ 
+  // register your controllers / directives here
+  app.controller("ItemListCtrl", controllers.ItemListCtrl);
+  
+
+})();

@@ -1,26 +1,39 @@
-module app.itemList {
-	interface ItemListModel {
+module controllers {
+	// NOTE: take a look at this http://stackoverflow.com/questions/30176289/using-external-modules-in-typescript/30176523#30176523
+	export interface ItemListModel {
 		title: string;
-		items: app.domain.IItem[];
+		items: interfaces.ITask[];
 		addNewItem(): void;
 		cancelNewItem(): void;
 		deleteItem(delItem): void;
 	}
 
-	class ItemListCtrl implements ItemListModel {
+	export class ItemListCtrl implements ItemListModel {
 		title: string;
-		newItem: app.domain.IItem;
-		items: app.domain.IItem[];
+		newItem: interfaces.ITask;
+		items: interfaces.ITask[];
 
 		static $inject=["dataAccessService"];
-		constructor(private dataAccessService: app.common.DataAccessService) {
+ 
+ 		// NOTE: you MUST use the interface here, or your class is tightly-coupled to a specific service class
+		constructor(private dataAccessService: interfaces.IDataAccessService) {
 			this.title = "Things to Learn";
 			this.items = [];
+			console.log("inside ItemListCtrl constructor!");
 			
-			var itemResource = dataAccessService.getItemResource();
-			itemResource.query((data: app.domain.IItem[]) => {
-				this.items = data;
-			})
+			dataAccessService.getTasks().then((data) => {
+				var arr = data as interfaces.ITask[];
+				console.log("received " + arr.length + " Tasks in response.");
+				this.items = arr;
+			}, (err) => {
+				console.error(err);
+			});
+			
+			// The following lines I commented out are probably best done in the service class, imo
+			// var itemResource = dataAccessService.getItemResource();
+			// itemResource.query((data: app.domain.IItem[]) => {
+			// 	this.items = data;
+			// });
 		};
 		addNewItem(): void {
 			//alert(this.newItem);
@@ -40,7 +53,7 @@ module app.itemList {
 			//alert(delItem);				
 			var index = -1;
 			for (var i = 0; i < this.items.length; i++) {
-				if (this.items[i].itemId === delItem) {
+				if (this.items[i].id === delItem) {
 					index = i;
 					break;
 				}
@@ -51,8 +64,6 @@ module app.itemList {
 			this.items.splice(index, 1);
 		};
 	}
-	angular
-		.module("itemListBldr")
-		.controller("ItemListCtrl",
-		ItemListCtrl);
+	// var app = angular.module("itemListBldr");
+	
 }

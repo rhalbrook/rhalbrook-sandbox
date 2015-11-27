@@ -12,7 +12,7 @@
              </tr>
             </thead>
             <tbody>
-            <tr class="repeat-item" ng-repeat="items in x.items" ng-click="showDelete=!showDelete;">
+            <tr class="repeat-item" ng-repeat="items in x.items track by $id" ng-click="showDelete=!showDelete;">
                 <td align="center">{{ items.itemId }} </td>
                 <td align="left">{{ items.itemName }}</td>
                 <td align="left">{{ items.description }}</td>

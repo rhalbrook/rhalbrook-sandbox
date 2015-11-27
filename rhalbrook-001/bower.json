@@ -1,0 +1,43 @@
+{
+  "name": "rhalbrook-001",
+  "description": "A starter project for Ralph",
+  "version": "0.0.0",
+  "homepage": "",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.4.0",
+    "angular-route": "~1.4.0",
+    "angular-loader": "~1.4.0",
+    "angular-mocks": "~1.4.0",
+    "html5-boilerplate": "~5.2.0",
+    "moment": "~2.10.6",
+    "angular-material": "~0.11.4"
+  },
+  "install": {
+    "path": {
+      "css": "app/css",
+      "js": "app/js"
+    },
+    "sources": {
+      "angular-animate": "bower_components/angular-animate/angular-animate.js",
+      "angular-material": [
+        "bower_components/angular-material/angular-material.js",
+        "bower_components/angular-material/angular-material.css"
+      ],
+      "angular-route": "bower_components/angular-route/angular-route.js",
+      "angular-mocks": "bower_components/angular-mocks/angular-mocks.js",
+      "angular": "bower_components/angular/angular.js",
+      "moment": "bower_components/moment/moment.js",
+      "webcomponentsjs": "bower_components/webcomponentsjs/webcomponents.js",
+      "fakerest": "bower_components/fakerest/dist/FakeRest.min.js"
+    }
+  },
+  "resolutions": {
+    "webcomponentsjs": "^0.6.0"
+  },
+  "devDependencies": {
+    "fakerest": "~1.1.4",
+    "sinon": "~1.17.2"
+  }
+}
