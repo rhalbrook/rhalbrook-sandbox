@@ -44,7 +44,6 @@ var controllers;
                 }
             }
             if (index === -1) {
-                alert("Something gone wrong");
             }
             this.items.splice(index, 1);
         };

@@ -1,10 +1,13 @@
-var services;
-(function (services) {
-    var MyDataAccessService = (function () {
-        function MyDataAccessService($http, $q) {
+module services {
+    
+    export class MockDataAccessService implements interfaces.IDataAccessService {
+        //public $httpService: ng.IHttpService;
+
+        public $fakeServer: any;
+        
+        constructor(private $http: ng.IHttpService, private $q: ng.IQService) {
             // this.$httpService = $http;
-            this.$http = $http;
-            this.$q = $q;
+            
             this.$fakeServer = new FakeRest.Server();
             this.$fakeServer.toggleLogging();
             var data = {
@@ -69,48 +72,51 @@ var services;
             var server = sinon.fakeServer.create();
             server.respondWith(this.$fakeServer.getHandler());
         }
-        MyDataAccessService.prototype.getTasks = function () {
+
+
+
+        getTasks(): ng.IPromise<interfaces.ITask[]> {
             var deferred = this.$q.defer();
             console.log("fetching tasks...");
             var req = new XMLHttpRequest();
             req.open("GET", "/tasks", false);
-            req.onload = function (e) {
+            req.onload = (e) => {
                 if (req.readyState === 4) {
                     if (req.status === 200) {
                         deferred.resolve(JSON.parse(req.responseText));
-                    }
-                    else {
+                    } else {
                         console.error(req.statusText);
                         deferred.reject(req.statusText);
                     }
-                }
-                else {
+                } else {
                     debugger;
                 }
             };
-            req.onerror = function (e) {
+            req.onerror = (e) => {
                 console.error(req.statusText);
                 deferred.reject(e);
             };
             req.send(null);
             return deferred.promise;
-        };
+        }
+        
         // FIXME: method needs implementation (use getTasks as example)  hint: requires http method POST
-        MyDataAccessService.prototype.addTask = function (obj) {
+        addTask(obj:interfaces.ITask): ng.IPromise<interfaces.ITask> {
             var deferred = this.$q.defer();
-            return deferred.promise;
-        };
+           return deferred.promise; 
+       }
+        
         // FIXME: method needs implementation (use getTasks as example)  hint: requires http method DESTROY or DELETE
-        MyDataAccessService.prototype.deleteTask = function (obj) {
+		deleteTask(obj:interfaces.ITask): ng.IPromise<any> {
             var deferred = this.$q.defer();
             return deferred.promise;
-        };
+        }
+        
         // FIXME: method needs implementation (use getTasks as example)  hint: requires http method PUT
-        MyDataAccessService.prototype.updateTask = function (obj) {
+		updateTask(obj:interfaces.ITask): ng.IPromise<interfaces.ITask> {
             var deferred = this.$q.defer();
             return deferred.promise;
-        };
-        return MyDataAccessService;
-    })();
-    services.MyDataAccessService = MyDataAccessService;
-})(services || (services = {}));
+        }
+        
+    }
+}
