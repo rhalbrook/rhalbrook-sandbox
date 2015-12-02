@@ -4,8 +4,11 @@ module interfaces {
 	// but can still be a time-saver.
 	export interface ITask {
 		id: number;
+		itemId: number;
 		itemName: string;
 		description: string;
+		createdAt: Date;
+		updatedAt: Date;
 	}
 
 	export interface IFoo {

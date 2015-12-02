@@ -5,14 +5,16 @@ var controllers;
         function ItemListCtrl(dataAccessService) {
             var _this = this;
             this.dataAccessService = dataAccessService;
-            this.title = "Things to Learn";
+            this.title = "Ralph's list of things to learn";
             this.items = [];
             console.log("inside ItemListCtrl constructor!");
-            dataAccessService.getTasks().then(function (data) {
+            this.$myService = dataAccessService;
+            this.$myService.getTasks().then(function (data) {
                 var arr = data;
                 console.log("received " + arr.length + " Tasks in response.");
                 _this.items = arr;
             }, function (err) {
+                _this.items = [];
                 console.error(err);
             });
             // The following lines I commented out are probably best done in the service class, imo
@@ -23,29 +25,31 @@ var controllers;
         }
         ;
         ItemListCtrl.prototype.addNewItem = function () {
-            //alert(this.newItem);
-            if (this.newItem) {
-                this.items.push(this.newItem);
-                this.newItem = null;
-            }
-            else {
-            }
+            var _this = this;
+            this.$myService.addTask(this.newItem).then(function (data) {
+                _this.items.push(data);
+                _this.newItem = null;
+            }, function (err) {
+                console.error(err);
+            });
         };
         ItemListCtrl.prototype.cancelNewItem = function () {
             this.newItem = null;
         };
         ItemListCtrl.prototype.deleteItem = function (delItem) {
-            //alert(delItem);				
-            var index = -1;
-            for (var i = 0; i < this.items.length; i++) {
-                if (this.items[i].id === delItem) {
-                    index = i;
-                    break;
-                }
-            }
-            if (index === -1) {
-            }
-            this.items.splice(index, 1);
+            var _this = this;
+            alert(delItem);
+            this.$myService.deleteTask(delItem).then(function (data) {
+                // rh: Not sure if this is the way that you do this.  
+                // rh: I've been researching it but I can't seem to find anything.
+                // rh: My console says that I'm getting into the Delete Method ("deleting one task...")
+                // hr: But it is erroring out on the "deferred.resolve(JSON.parse(req.responseText));"
+                // hr: So that just tells me that I am trying to send the data to the method incorrectly 
+                _this.items.splice(data);
+                _this.newItem = null;
+            }, function (err) {
+                console.error(err);
+            });
         };
         ;
         ItemListCtrl.$inject = ["dataAccessService"];

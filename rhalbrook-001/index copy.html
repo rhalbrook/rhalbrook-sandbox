@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Items of ToDos</title>
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/angular-animate.js"></script>
+    <script src="scripts/angular-resource.js"></script>
+    <script src="scripts/angular-mocks.js"></script>
+    <script src="app/js/sinon/sinon.js"></script>
+    <script src="app/js/fakerest/FakeRest.min.js"></script>
+    <script src="app/features/itemListCtrl.js"></script>
+    <script src="app/common/services/iDataAccessService.js"></script>
+    <script src="app/common/services/mockService.js"></script>
+    <script src="app/common/services/dataAccessService.js"></script>
+    <script src="app/app.js"></script>
+    <link href="styles/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="styles/animations.css" rel="stylesheet" type="test/css" />
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+</head>
+
+<body ng-app="itemListBldr">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <div class="navbar-brand">Ralph Halbrook's ToDos</div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <!--<div ng-include="'app/features/itemListView.html'"></div>-->
+        <div class="panel panel-primary" ng-controller="ItemListCtrl as x">
+            <div class="panel-heading" style="font-size:large">{{::x.title}}
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <td align="center" width="7%">ID</td>
+                        <td align="center" width="10%">ITEM ID</td>
+                        <td align="left" width="20%">NAME</td>
+                        <td align="left" width="56%">DESCRIPTION</td>
+                        <td align="center" width="7%"></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="repeat-item" ng-repeat="item in x.items" ng-click="showDelete=!showDelete;">
+                        <td align="center">{{ item.id }} </td>
+                        <td align="center">{{ item.itemId }} </td>
+                        <td align="left">{{ item.itemName }}</td>
+                        <td align="left">{{ item.description }}</td>
+                        <td align="center">
+                            <div ng-show="showDelete">
+                                <a href="#" ng-click="x.deleteItem(item.id)" title="Click here to delete ({{ item.itemId }}) {{ item.itemName }}"><i class="fa fa-times"></i> Delete</a>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr ng-show="showInputs" class="repeat-item" ng-mouseenter="showCancel=true;" ng-mouseleave="showCancel=false;">
+                        <form name="newItem">
+                            <td align="center"></td>
+                            <td align="center">
+                                <input type="text" placeholder="Item ID" style="width: 75px; padding-left: 10px;" ng-model="x.newItem.itemId"
+                                />
+                            </td>
+                            <td align="left">
+                                <input type="text" placeholder="Item Name" style="width: 150px; padding-left: 10px;" ng-model="x.newItem.itemName"
+                                />
+                            </td>
+                            <td align="left">
+                                <input type="text" placeholder="Item Description" style="width: 300px; padding-left: 10px;" ng-model="x.newItem.description"
+                                ng-blur="x.addNewItem(); showInputs=false;" ng-keyup="$event.keyCode == 13 ? x.addNewItem() : null"
+                                />
+                            </td>
+                            <td align="center">
+                                <div ng-show="showCancel" style="padding-top: 3px;">
+                                    <a href="#" ng-click="x.cancelNewItem(); showInputs=false;" title="Click here to remove the add new item form"><i class="fa fa-times"></i> Cancel</a>
+                                </div>
+                            </td>
+                        </form>
+                    </tr>
+                    <tr class="repeat-item">
+                        <td align="center"></td>
+                        <td align="center"></td>
+                        <td align="left"></td>
+                        <td align="left"></td>
+                        <td align="center"></td>
+                    </tr>
+                </tfoot>
+            </table>
+            <div>
+                <center><a class="btn btn-default" ng-click="showInputs=true;" style="width:200px">Add New Item to List</a></center>
+            </div>
+            <div class="text-primary">
+                <ul>
+                    <li style="list-style-type:none"><u>QUESTIONS</u></li>
+                    <li>Setting an ng-show or ng-hide from a class function</li>
+                    <ul>
+                        <li>Usage: Hide Input boxes on addNewItem from [Enter Key]</li>
+                    </ul>
+                    <li>Setting focus of an Input Object from a class function</li>
+                    <ul>
+                        <li>Usage: Set focus back on the itemId once addNewItem has run</li>
+                    </ul>
+                    <li>Submitting a new item with [Enter Key] with multi input boxes</li>
+                    <li>Submitting a new item with [Object.Blur] with multi input boxes</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
