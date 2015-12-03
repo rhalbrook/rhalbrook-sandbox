@@ -7,7 +7,7 @@ module common.services {
 
 		}
 		getItemResource(): ng.resource.IResourceClass<IItemResource> {
-			return this.$resource("/api/items/:itemId");
+			return this.$resource("/api/items/:id");
 		}
 	}
 	// angular

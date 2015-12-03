@@ -6,6 +6,7 @@ module controllers {
 		addNewItem(): void;
 		cancelNewItem(): void;
 		deleteItem(delItem): void;
+		justAlert(myAlert): void;
 	}
 
 	export class ItemListCtrl implements ItemListModel {
@@ -52,13 +53,8 @@ module controllers {
 			this.newItem = null;
 		}
 		deleteItem(delItem): void {
-			alert(delItem);
-			this.$myService.deleteTask(this.delItem).then((data) => {
-				// rh: Not sure if this is the way that you do this.  
-				// rh: I've been researching it but I can't seem to find anything.
-				// rh: My console says that I'm getting into the Delete Method ("deleting one task...")
-				// hr: But it is erroring out on the "deferred.resolve(JSON.parse(req.responseText));"
-				// hr: So that just tells me that I am trying to send the data to the method incorrectly 
+			//alert(delItem);
+			this.$myService.deleteTask(delItem).then((data) => {
 				//this.items.splice(???, 1); 
 				this.delItem = null;			
 			}, (err) => {
@@ -66,6 +62,11 @@ module controllers {
 			})
 
 		};
+		justAlert(myAlert): void{
+			if(myAlert==1){
+				alert("This will have categories soon :)");
+			}
+		}
 	}
 	//  var app = angular.module("itemListBldr");
 	

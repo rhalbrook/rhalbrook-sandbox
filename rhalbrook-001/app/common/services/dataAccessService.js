@@ -7,7 +7,7 @@ var common;
                 this.$resource = $resource;
             }
             DataAccessService.prototype.getItemResource = function () {
-                return this.$resource("/api/items/:itemId");
+                return this.$resource("/api/items/:id");
             };
             DataAccessService.$inject = ["$resource"];
             return DataAccessService;

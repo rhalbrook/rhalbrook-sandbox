@@ -38,13 +38,8 @@ var controllers;
         };
         ItemListCtrl.prototype.deleteItem = function (delItem) {
             var _this = this;
-            alert(delItem);
-            this.$myService.deleteTask(this.delItem).then(function (data) {
-                // rh: Not sure if this is the way that you do this.  
-                // rh: I've been researching it but I can't seem to find anything.
-                // rh: My console says that I'm getting into the Delete Method ("deleting one task...")
-                // hr: But it is erroring out on the "deferred.resolve(JSON.parse(req.responseText));"
-                // hr: So that just tells me that I am trying to send the data to the method incorrectly 
+            //alert(delItem);
+            this.$myService.deleteTask(delItem).then(function (data) {
                 //this.items.splice(???, 1); 
                 _this.delItem = null;
             }, function (err) {
@@ -52,6 +47,11 @@ var controllers;
             });
         };
         ;
+        ItemListCtrl.prototype.justAlert = function (myAlert) {
+            if (myAlert == 1) {
+                alert("This will have categories soon :)");
+            }
+        };
         ItemListCtrl.$inject = ["dataAccessService"];
         return ItemListCtrl;
     })();

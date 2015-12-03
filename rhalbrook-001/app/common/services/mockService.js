@@ -27,7 +27,7 @@ var services;
                         "itemName": "AngularJS",
                         "description": "Learn AngularJS"
                     },
-                    {
+                    /*{
                         "id": 4,
                         "itemId": 104,
                         "itemName": "Material Design",
@@ -62,7 +62,7 @@ var services;
                         "itemId": 109,
                         "itemName": "Design Patterns",
                         "description": "Learn Design Patterns (of various flavors, such as Singleton, delegate, observer, etc.)"
-                    },
+                    },*/
                     {
                         "id": 10,
                         "itemId": 110,
@@ -133,7 +133,7 @@ var services;
             console.log("deleting one task...");
             var req = new XMLHttpRequest();
             console.log(req);
-            req.open("DELETE", "/tasks/id:", false);
+            req.open("DELETE", "/tasks/id", false);
             req.onload = function (e) {
                 if (req.readyState === 4) {
                     deferred.resolve(JSON.parse(req.responseText));
