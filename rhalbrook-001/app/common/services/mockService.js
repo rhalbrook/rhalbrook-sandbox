@@ -71,8 +71,8 @@ var services;
                     }
                 ],
                 "foos": [
-                    { "id": 1, "itemId": 111, "itemName": "first test foo", "description": "Test 123" },
-                    { "id": 2, "itemId": 222, "itemName": "second test foo", "description": "ARAAAAAGH!" }
+                    { "id": 1, "itemId": 101, "itemName": "first test foo", "description": "Test 123" },
+                    { "id": 2, "itemId": 102, "itemName": "second test foo", "description": "ARAAAAAGH!" }
                 ]
             };
             this.$fakeServer.init(data);
@@ -129,9 +129,11 @@ var services;
         // FIXME: method needs implementation (use getTasks as example)  hint: requires http method DESTROY or DELETE
         MockDataAccessService.prototype.deleteTask = function (obj) {
             var deferred = this.$q.defer();
+            console.log(deferred);
             console.log("deleting one task...");
             var req = new XMLHttpRequest();
-            req.open("DELETE", "/tasks/id", false);
+            console.log(req);
+            req.open("DELETE", "/tasks/id:", false);
             req.onload = function (e) {
                 if (req.readyState === 4) {
                     deferred.resolve(JSON.parse(req.responseText));
