@@ -10,11 +10,9 @@ var controllers;
             console.log("inside ItemListCtrl constructor!");
             this.$myService = dataAccessService;
             this.$myService.getTasks().then(function (data) {
-                var arr = data;
-                console.log("received " + arr.length + " Tasks in response.");
-                _this.items = arr;
+                console.log("received " + data.length + " Tasks in response.");
+                _this.items = data;
             }, function (err) {
-                _this.items = [];
                 console.error(err);
             });
             // The following lines I commented out are probably best done in the service class, imo
@@ -40,7 +38,8 @@ var controllers;
             var _this = this;
             //alert(delItem);
             this.$myService.deleteTask(delItem).then(function (data) {
-                //this.items.splice(???, 1); 
+                var index = _this.items.indexOf(delItem);
+                _this.items.splice(index, 1);
                 _this.delItem = null;
             }, function (err) {
                 console.error(err);

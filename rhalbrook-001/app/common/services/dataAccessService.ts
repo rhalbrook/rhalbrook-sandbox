@@ -1,6 +1,6 @@
 module common.services {
 	export class DataAccessService
-		implements interfaces.IDataAccessService {
+		 { // implements interfaces.IDataAccessService
 
 		static $inject = ["$resource"];
 		constructor(private $resource: ng.resource.IResourceService) {

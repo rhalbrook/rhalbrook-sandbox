@@ -138,7 +138,7 @@ module services {
             console.log("deleting one task...");
             var req = new XMLHttpRequest();
             console.log(req);
-            req.open("DELETE", "/tasks/id", false);
+            req.open("DELETE", "/tasks/"+obj.id, false);
             req.onload = (e) => {
                 if (req.readyState === 4) {
                     deferred.resolve(JSON.parse(req.responseText));

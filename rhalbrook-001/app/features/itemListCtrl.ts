@@ -7,7 +7,7 @@ module controllers {
 		cancelNewItem(): void;
 		deleteItem(delItem): void;
 		justAlert(myAlert): void;
-	}
+	} 
 
 	export class ItemListCtrl implements ItemListModel {
 		title: string;
@@ -26,12 +26,10 @@ module controllers {
 			
 			this.$myService = dataAccessService;
 			
-			this.$myService.getTasks().then((data) => {
-				var arr = data as interfaces.ITask[];
-				console.log("received " + arr.length + " Tasks in response.");
-				this.items = arr;
+			this.$myService.getTasks().then((data:interfaces.ITask[]) => {
+				console.log("received " + data.length + " Tasks in response.");
+				this.items = data;
 			}, (err) => {
-				this.items = [];
 				console.error(err);
 			});
 			
@@ -55,7 +53,8 @@ module controllers {
 		deleteItem(delItem): void {
 			//alert(delItem);
 			this.$myService.deleteTask(delItem).then((data) => {
-				//this.items.splice(???, 1); 
+				var index = this.items.indexOf(delItem);
+				this.items.splice(index, 1); 
 				this.delItem = null;			
 			}, (err) => {
 				console.error(err);
