@@ -1,20 +1,17 @@
-var app;
-(function (app) {
-    var common;
-    (function (common) {
+var common;
+(function (common) {
+    var services;
+    (function (services) {
         var DataAccessService = (function () {
             function DataAccessService($resource) {
                 this.$resource = $resource;
             }
             DataAccessService.prototype.getItemResource = function () {
-                return this.$resource("/api/items/:itemId");
+                return this.$resource("/api/items/:id");
             };
             DataAccessService.$inject = ["$resource"];
             return DataAccessService;
         })();
-        common.DataAccessService = DataAccessService;
-        angular
-            .module("common.services")
-            .service("dataAccessService", DataAccessService);
-    })(common = app.common || (app.common = {}));
-})(app || (app = {}));
+        services.DataAccessService = DataAccessService;
+    })(services = common.services || (common.services = {}));
+})(common || (common = {}));
