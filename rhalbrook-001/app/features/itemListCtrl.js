@@ -21,6 +21,17 @@ var controllers;
             // 	this.items = data;
             // });
         }
+        Object.defineProperty(ItemListCtrl.prototype, "search", {
+            get: function () {
+                return this._search;
+            },
+            set: function (theSearch) {
+                console.log("search: " + theSearch);
+                this._search = theSearch;
+            },
+            enumerable: true,
+            configurable: true
+        });
         ;
         ItemListCtrl.prototype.addNewItem = function () {
             var _this = this;
@@ -36,7 +47,6 @@ var controllers;
         };
         ItemListCtrl.prototype.deleteItem = function (delItem) {
             var _this = this;
-            //alert(delItem);
             this.$myService.deleteTask(delItem).then(function (data) {
                 var index = _this.items.indexOf(delItem);
                 _this.items.splice(index, 1);
@@ -45,11 +55,26 @@ var controllers;
                 console.error(err);
             });
         };
-        ;
+        ItemListCtrl.prototype.editItem = function (edItem) {
+            var _this = this;
+            console.log("Starting Edit...");
+            this.$myService.updateTask(edItem).then(function (data) {
+                var index = _this.items.indexOf(edItem);
+                console.log("I'm Back");
+                _this.edItem = null;
+            }, function (err) {
+                console.error(err);
+            });
+        };
         ItemListCtrl.prototype.justAlert = function (myAlert) {
             if (myAlert == 1) {
                 alert("This will have categories soon :)");
             }
+        };
+        ItemListCtrl.prototype.openMenu = function ($mdOpenMenu, ev) {
+            var originatorEv;
+            originatorEv = ev;
+            $mdOpenMenu(ev);
         };
         ItemListCtrl.$inject = ["dataAccessService"];
         return ItemListCtrl;

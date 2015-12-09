@@ -6,7 +6,7 @@ module common.services {
 		constructor(private $resource: ng.resource.IResourceService) {
 
 		}
-		getItemResource(): ng.resource.IResourceClass<IItemResource> {
+		getItemResource(): ng.resource.IResourceClass<interfaces.IItemResource> {
 			return this.$resource("/api/items/:id");
 		}
 	}

@@ -6,14 +6,26 @@ module controllers {
 		addNewItem(): void;
 		cancelNewItem(): void;
 		deleteItem(delItem): void;
+		editItem(edItem): void;
 		justAlert(myAlert): void;
+		openMenu($mdOpenMenu, ev): void;
 	} 
 
 	export class ItemListCtrl implements ItemListModel {
 		title: string;
 		newItem: interfaces.ITask;
 		delItem: interfaces.ITask;
+		edItem: interfaces.ITask;
 		items: interfaces.ITask[];
+		private _search: string;
+
+		get search():string {
+        	return this._search;
+    	}
+    	set search(theSearch:string) {
+			console.log("search: " + theSearch);
+        	this._search = theSearch;
+    	}
 		public $myService:interfaces.IDataAccessService;
 
 		static $inject=["dataAccessService"];
@@ -51,7 +63,6 @@ module controllers {
 			this.newItem = null;
 		}
 		deleteItem(delItem): void {
-			//alert(delItem);
 			this.$myService.deleteTask(delItem).then((data) => {
 				var index = this.items.indexOf(delItem);
 				this.items.splice(index, 1); 
@@ -59,12 +70,26 @@ module controllers {
 			}, (err) => {
 				console.error(err);
 			})
-
-		};
+		}
+		editItem(edItem):void {
+			console.log("Starting Edit...");
+			this.$myService.updateTask(edItem).then((data) => {
+				var index = this.items.indexOf(edItem);
+				console.log("I'm Back");
+				this.edItem = null;			
+			}, (err) => {
+				console.error(err);
+			})			
+		}
 		justAlert(myAlert): void{
 			if(myAlert==1){
 				alert("This will have categories soon :)");
 			}
+		}
+		openMenu($mdOpenMenu, ev) {
+			var originatorEv;
+			originatorEv = ev;
+			$mdOpenMenu(ev);
 		}
 	}
 	//  var app = angular.module("itemListBldr");

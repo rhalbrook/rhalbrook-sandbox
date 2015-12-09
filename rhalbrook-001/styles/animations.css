@@ -1,4 +1,4 @@
-.repeat-item.ng-enter,
+/*.repeat-item.ng-enter,
 .repeat-item.ng-leave {
   -webkit-transition:1.0s ease all;
   transition:1.0s ease all;
@@ -20,4 +20,4 @@
 }
 .delete {
   float: right;
-}
+}*/
