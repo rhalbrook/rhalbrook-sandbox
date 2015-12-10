@@ -11,76 +11,69 @@ module services {
             this.$fakeServer = new FakeRest.Server();
             this.$fakeServer.toggleLogging();
             var data = {
-                "tasks": [
+                "epics": [
                     {
-                        "id": 1,
-                        "type": "A",
-                        "itemId": 101,
-                        "itemName": "OOP",
-                        "description": "Learn Object-Oriented Programming (esp. using TypeScript)"
+                        "id":12476,
+                        "key":"CD-76",
+                        "self":"https://consolo.atlassian.net/rest/agile/1.0/epic/12476",
+                        "name":"Admin Tasks",
+                        "summary":"all issues that a just process / admin / whatever",
+                        "color":{"key":"color_8"},
+                        "done":false
                     },
                     {
-                        "id": 2,
-                        "type": "B",
-                        "itemId": 102,
-                        "itemName": "REST-ful",
-                        "description": "Learn REST-ful web services and HTTP request ins-and-outs"
+                        "id":13485,
+                        "key":"CD-646",
+                        "self":"https://consolo.atlassian.net/rest/agile/1.0/epic/13485",
+                        "name":"Vacation",
+                        "summary":"vacation days",
+                        "color":{"key":"color_2"},
+                        "done":true
                     },
                     {
-                        "id": 3,
-                        "type": "C",
-                        "itemId": 103,
-                        "itemName": "AngularJS",
-                        "description": "Learn AngularJS"
+                        "id":13352,
+                        "key":"CD-566",
+                        "self":"https://consolo.atlassian.net/rest/agile/1.0/epic/13352",
+                        "name":"Medispan database files",
+                        "summary":"Import all medispan database files into medispan microservice and integrate functionality into Consolo Core",
+                        "color":{"key":"color_1"},
+                        "done":true
                     },
                     {
-                        "id": 4,
-                        "type": "A",
-                        "itemId": 104,
-                        "itemName": "Material Design",
-                        "description": "Learn Material Design"
+                        "id":12463,
+                        "key":"CD-63",
+                        "self":"https://consolo.atlassian.net/rest/agile/1.0/epic/12463",
+                        "name":"Aide Assistant / Tracker MVP",
+                        "summary":"All tasks related to getting Aide Assistant into people's hands",
+                        "color":{"key":"color_1"},
+                        "done":false
                     },
                     {
-                        "id": 5,
-                        "type": "B",
-                        "itemId": 105,
-                        "itemName": "TypeScript",
-                        "description": "Learn TypeScript"
+                        "id":12513,
+                        "key":"CD-111",
+                        "self":"https://consolo.atlassian.net/rest/agile/1.0/epic/12513",
+                        "name":"Discharge Summary",
+                        "summary":"Discharge Summary  (reference only 13285)",
+                        "color":{"key":"color_1"},
+                        "done":true
                     },
                     {
-                        "id": 6,
-                        "type": "C",
-                        "itemId": 106,
-                        "itemName": "Jade",
-                        "description": "Learn Jade (HTML template creation)"
+                        "id":12464,
+                        "key":"CD-64",
+                        "self":"https://consolo.atlassian.net/rest/agile/1.0/epic/12464",
+                        "name":"Supply Chain Requirements Gathering / Design Stage",
+                        "summary":"All issues related to getting supply chain scoped and estimated",
+                        "color":{"key":"color_3"},
+                        "done":false
                     },
                     {
-                        "id": 7,
-                        "type": "A",
-                        "itemId": 107,
-                        "itemName": "Git",
-                        "description": "Learn Advanced Git for SCM"
-                    },
-                    {
-                        "id": 8,
-                        "type": "B",
-                        "itemId": 108,
-                        "itemName": "Jasmine",
-                        "description": "Learn Jasmine for Front-End Unit Testing"
-                    },
-                    {
-                        "id": 9,
-                        "type": "C",
-                        "itemId": 109,
-                        "itemName": "Design Patterns",
-                        "description": "Learn Design Patterns (of various flavors, such as Singleton, delegate, observer, etc.)"
-                    },
-                    {
-                        "id": 10,
-                        "type": "A",
-                        "itemId": 110,
-                        "itemName": "Ruby & Ruby on Rails",
-                        "description": "Learn Ruby & Ruby on Rails (Eventually)"
+                        "id":12465,
+                        "key":"CD-65",
+                        "self":"https://consolo.atlassian.net/rest/agile/1.0/epic/12465",
+                        "name":"Vagrant / Docker Adoption 1.0",
+                        "summary":"all tasks related to getting vagrant / docker ready for developers to use it for the development environments",
+                        "color":{"key":"color_5"},
+                        "done":true
                     }
                 ],
                 "foos": [
@@ -93,12 +86,12 @@ module services {
             server.respondWith(this.$fakeServer.getHandler());
         }
 
-        // GET TASK
-        getTasks(): ng.IPromise<interfaces.ITask[]> {
+        // GET Epic
+        getEpics(): ng.IPromise<interfaces.IEpic[]> {
             var deferred = this.$q.defer();
             console.log("fetching tasks...");
             var req = new XMLHttpRequest();
-            req.open("GET", "/tasks", false);
+            req.open("GET", "/epics", false);
             req.onload = (e) => {
                 if (req.readyState === 4) {
                     if (req.status === 200) {
@@ -117,72 +110,6 @@ module services {
             };
             req.send(null);
             return deferred.promise;
-        }
-        
-        // FIXME: method needs implementation (use getTasks as example)  hint: requires http method POST
-        addTask(obj:interfaces.ITask): ng.IPromise<interfaces.ITask> {
-            var deferred = this.$q.defer();
-             console.log("adding one task...");
-            var req = new XMLHttpRequest();
-            req.open("POST", "/tasks", false);
-            req.onload = (e) => {
-                if (req.readyState === 4) {
-                    deferred.resolve(JSON.parse(req.responseText));
-                } else {
-                    debugger;
-                }
-            };
-            req.onerror = (e) => {
-                console.error(req.statusText);
-                deferred.reject(e);
-            };
-            req.send(JSON.stringify(obj));
-           return deferred.promise; 
-       }
-        
-        // FIXME: method needs implementation (use getTasks as example)  hint: requires http method DESTROY or DELETE
-		deleteTask(obj:interfaces.ITask): ng.IPromise<any> {
-            var deferred = this.$q.defer();
-            console.log("deleting one task...");
-            var req = new XMLHttpRequest();
-            req.open("DELETE", "/tasks/"+obj.id, false);
-            req.onload = (e) => {
-                if (req.readyState === 4) {
-                    deferred.resolve(JSON.parse(req.responseText));
-                } else {
-                    debugger;
-                }
-            };
-            req.onerror = (e) => {
-                console.error(req.statusText);
-                deferred.reject(e);
-            };
-            req.send(JSON.stringify(obj));
-            return deferred.promise;
-        }
-        
-        // FIXME: method needs implementation (use getTasks as example)  hint: requires http method PUT
-		updateTask(obj:interfaces.ITask): ng.IPromise<interfaces.ITask> {
-            var deferred = this.$q.defer();
-            console.log("udating one task...");
-            console.log(obj);
-            var req = new XMLHttpRequest();
-            req.open("PUT", "/tasks/"+obj.id, false);
-            req.onload = (e) => {
-                if (req.readyState === 4) {
-                    deferred.resolve(JSON.parse(req.responseText));
-                } else {
-                    debugger;
-                }
-            };
-            req.onerror = (e) => {
-                console.error(req.statusText);
-                deferred.reject(e);
-            };
-            req.send(JSON.stringify(obj));
-            console.log("heading back...")
-            return deferred.promise;
-        }
-        
+        }        
     }
 }

@@ -1,38 +1,9 @@
-<div class="panel panel-primary" ng-controller="ItemListCtrl as x" ng-init="editItem=false;" ng-cloak>
+<div class="panel panel-primary" ng-controller="ItemListCtrl as x" ng-cloak>
         <md-content class="md-padding" layout="row" layout-wrap layout-align="center start">
                 <md-card class="md-whiteframe-6dp" style="width: 1000px;">
                 <md-toolbar>
                 <!-- TOP NAVBAR -->
                 <div class="md-toolbar-tools">
-                        <md-menu>
-                        <md-button class="md-icon-button" aria-label="Open phone interactions menu" ng-click="x.openMenu($mdOpenMenu, $event);">
-                        <md-icon md-menu-origin class="material-icons">list</md-icon>
-                        </md-button>
-                        <md-menu-content width="4">                                 
-                        <md-menu-item> 
-                        <md-button>
-                        <md-icon md-menu-align-target class="material-icons">filter_list</md-icon>
-                        Select an Item Type
-                        </md-button>
-                        </md-menu-item>
-                        <md-menu-divider></md-menu-divider>
-                        <md-menu-item>  
-                        <md-button ng-click="x.filterMenu = {type: 'A'}">
-                        Type A
-                        </md-button>
-                        </md-menu-item>
-                        <md-menu-item>
-                        <md-button ng-click="x.filterMenu = {type: 'B'}">
-                        Type B
-                        </md-button>
-                        </md-menu-item>
-                        <md-menu-item>
-                        <md-button ng-click="x.filterMenu = {type: 'C'}">
-                        Type C
-                        </md-button>
-                        </md-menu-item>
-                        </md-menu-content> 
-                        </md-menu>
                         <h2 class="md-toolbar-tools">
                         <span>{{::x.title}}</span>
                         </h2> 
@@ -45,81 +16,41 @@
                         <!-- ITEM GRID -->
                         <!-- ITEM GRID - HEADER -->
                         <md-list-item class="bottomBorder animated fadeIn">
-                                <div class="md-body-1" style="width:7%; vertical-align: text-top;">
+                                <div class="md-body-1" style="width:10%; vertical-align: text-top;">
                                         <center><a href="#" ng-click="sortType = 'id'; sortReverse = !sortReverse">
                                         ID
                                         <span ng-show="sortType == 'id' && !sortReverse" class="fa fa-caret-down"></span>
                                         <span ng-show="sortType == 'id' && sortReverse" class="fa fa-caret-up"></span>
                                         </a></center>
                                 </div>  
-                               <div class="md-body-1" style="width:7%; vertical-align: text-top;">
-                                        <center><a href="#" ng-click="sortType = 'type'; sortReverse = !sortReverse">
-                                        TYPE
-                                        <span ng-show="sortType == 'type' && !sortReverse" class="fa fa-caret-down"></span>
-                                        <span ng-show="sortType == 'type' && sortReverse" class="fa fa-caret-up"></span>
+                               <div class="md-body-1" style="width:10%; vertical-align: text-top;">
+                                        <center><a href="#" ng-click="sortType = 'key'; sortReverse = !sortReverse">
+                                        KEY
+                                        <span ng-show="sortType == 'key' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'key' && sortReverse" class="fa fa-caret-up"></span>
                                         </a></center>
                                 </div>                              
-                                <div class="md-body-1" style="width:10%; vertical-align: text-top;">
-                                        <center><a href="#" ng-click="sortType = 'itemId'; sortReverse = !sortReverse">
-                                        ITEM ID
-                                        <span ng-show="sortType == 'itemId' && !sortReverse" class="fa fa-caret-down"></span>
-                                        <span ng-show="sortType == 'itemId' && sortReverse" class="fa fa-caret-up"></span>
-                                        </a></center>
-                                </div>
-                                <div class="md-body-1" style="width:20%; vertical-align: text-top;">
-                                        <a href="#" ng-click="sortType = 'itemName'; sortReverse = !sortReverse">
+                                <div class="md-body-1" style="width:30%; vertical-align: text-top;">
+                                        <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
                                         NAME
-                                        <span ng-show="sortType == 'itemName' && !sortReverse" class="fa fa-caret-down"></span>
-                                        <span ng-show="sortType == 'itemName' && sortReverse" class="fa fa-caret-up"></span>
+                                        <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
                                         </a></div>
-                                <div class="md-body-1" style="width:44%; vertical-align: text-top;">
-                                        <a href="#" ng-click="sortType = 'description'; sortReverse = !sortReverse">
-                                        DESCRIPTION
-                                        <span ng-show="sortType == 'description' && !sortReverse" class="fa fa-caret-down"></span>
-                                        <span ng-show="sortType == 'description' && sortReverse" class="fa fa-caret-up"></span>
+                                <div class="md-body-1" style="width:50%; vertical-align: text-top;">
+                                        <a href="#" ng-click="sortType = 'summary'; sortReverse = !sortReverse">
+                                        SUMMARY
+                                        <span ng-show="sortType == 'summary' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'summary' && sortReverse" class="fa fa-caret-up"></span>
                                         </a></div>
-                                <div class="md-body-1" style="width:12%; vertical-align: text-top;"></div>
                         </md-list-item>
                         <!-- ITEM GRID - LOOPED CONTENT -->
-                        <md-list-item class="repeat-item animated fadeIn" ng-repeat="item in x.items | filter:x.search | filter:x.filterMenu | orderBy:sortType:sortReverse" ng-click="item.showDelete=!item.showDelete;" style="height:48px;">
-                                        <div class="md-body-1" style="width:7%; vertical-align: text-top;"><center>{{ item.id }}</center></div>
-                                        <div ng-hide="item.editItem" class="md-body-1" style="width:7%; vertical-align: text-top;"><center>{{ item.type }}</center></div>
-                                        <div ng-hide="item.editItem" class="md-body-1" style="width:10%; vertical-align: text-top;"><center>{{ item.itemId }}</center></div>
-                                        <div ng-hide="item.editItem" class="md-body-1" style="width:20%; vertical-align: text-top;">{{ item.itemName }}</div>
-                                        <div ng-hide="item.editItem" class="md-body-1" style="width:44%; vertical-align: text-top;">{{ item.description }}</div>
-                                       <!-- EDIT ITEM INPUT FIELDS -->
-                                        <div ng-show="item.editItem" class="md-body-1" style="width:7%; vertical-align: text-top;"><md-input-container md-no-float class="md-block"><input aria-label="Type" md-autofocus ng-model="item.type" style="text-align:center;"></md-input-container></div>
-                                        <div ng-show="item.editItem" class="md-body-1" style="width:10%; vertical-align: text-top;"><md-input-container md-no-float class="md-block"><input aria-label="Item ID" ng-model="item.itemId" style="text-align:center;"></md-input-container></div>             
-                                        <div ng-show="item.editItem" class="md-body-1" style="width:20%; vertical-align: text-top;"><md-input-container md-no-float class="md-block"><input aria-label="Name" ng-model="item.itemName"></md-input-container></div>                                   
-                                        <div ng-show="item.editItem" class="md-body-1" style="width:44%; vertical-align: text-top;"><md-input-container md-no-float class="md-block"><input aria-label="Description" ng-model="item.description" ng-blur="x.editItem(item); item.showDelete=true; item.editItem=false;"></md-input-container></div>                          
-                                        <!-- ITEM OPTIONS -->
-                                        <div class="md-body-1" style="width:12%; vertical-align: text-top;">
-                                                <div ng-show="item.showDelete">
-                                                        <a href="#" style="color:#E91E63;" ng-click="item.showDelete=false; item.editItem=true;" title="Click here to edit ({{ item.itemId }}) {{ item.itemName }}"><i class="fa fa-pencil-square-o"></i> Edit</a> | 
-                                                        <a href="#" style="color:#E91E63;" ng-click="x.deleteItem(item)" title="Click here to delete ({{ item.itemId }}) {{ item.itemName }}"><i class="fa fa-times"></i> Delete</a>
-                                                </div>
-                                        </div>                               
-                        </md-list-item>
-                        <!-- ADD NEW ITEM INPUT FIELDS -->
-                        <md-list-item ng-show="showInputs" class="repeat-item animated fadeInUp" ng-mouseenter="showCancel=true;" ng-mouseleave="showCancel=false;">
-                                <div class="md-body-1" style="width:7%; vertical-align: text-top;"></div>
-                                 <div class="md-body-1" style="width:7%; vertical-align: text-top;"><md-input-container md-no-float class="md-block"><input style="text-align:center;" ng-model="x.newItem.type" placeholder="Type"></md-input-container></div>
-                                <div class="md-body-1" style="width:10%; vertical-align: text-top;"><md-input-container md-no-float class="md-block"><input style="text-align:center;" ng-model="x.newItem.itemId" placeholder="Item ID"></md-input-container></div>
-                                <div class="md-body-1" style="width:20%; vertical-align: text-top;"><md-input-container md-no-float class="md-block"><input ng-model="x.newItem.itemName" placeholder="Item Name"></md-input-container></div>
-                                <div class="md-body-1" style="width:44%; vertical-align: text-top;"><md-input-container md-no-float class="md-block"><input ng-model="x.newItem.description" placeholder="Item Description" ng-blur="x.addNewItem(); showInputs=false;" ng-keyup="$event.keyCode == 13 ? x.addNewItem() : null"></md-input-container></div>
-                                <div class="md-body-1" style="width:12%; vertical-align: text-top;">
-                                        <div ng-show="showCancel">
-                                                <center><a href="#" ng-click="x.cancelNewItem(); showInputs=false;" title="Click here to remove the add new item form"><i class="fa fa-times"></i> Cancel</a></center>
-                                        </div>
-                                </div>                                   
-                        </md-list-item>
-                        <!-- ADD NEW ITEM BUTTON -->
-                        <div>
-                                <center>
-                                        <md-button class="md-raised md-accent animated fadeInDown" ng-click="showInputs=true;" style="width:220px;">Add New Item to List</md-button>
-                                </center>
-                        </div>
-                        </br>
+                        <md-list-item class="repeat-item animated fadeIn" ng-repeat="epic in x.epics | filter:x.search | orderBy:sortType:sortReverse" style="height:48px;">
+                                        <div class="md-body-1" style="width:10%; vertical-align: text-top;"><center>{{ epic.id }}</center></div>
+                                        <div class="md-body-1" style="width:10%; vertical-align: text-top;"><center>{{ epic.key }}</center></div>
+                                        <div class="md-body-1" style="width:30%; vertical-align: text-top;">{{ epic.name }}</div>
+                                        <div class="md-body-1" style="width:50%; vertical-align: text-top;">{{ epic.summary }}</div>
+                        </md-list-item> 
+</br></br>
                 </md-card>
         </md-content>
 </div>
