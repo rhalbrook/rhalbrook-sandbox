@@ -4,13 +4,20 @@ var controllers;
         function ItemListCtrl(dataAccessService) {
             var _this = this;
             this.dataAccessService = dataAccessService;
-            this.title = "JIRA Filtered Views";
+            this.title = "JIRA Filter Views";
             this.epics = [];
+            this.issues = [];
             console.log("inside ItemListCtrl constructor!");
             this.$myService = dataAccessService;
             this.$myService.getEpics().then(function (data) {
                 console.log("received " + data.length + " Epics in response.");
                 _this.epics = data;
+            }, function (err) {
+                console.error(err);
+            });
+            this.$myService.getIssue().then(function (data) {
+                console.log("received " + data.length + " Issues in response.");
+                _this.issues = data;
             }, function (err) {
                 console.error(err);
             });
@@ -27,6 +34,11 @@ var controllers;
             configurable: true
         });
         ;
+        ItemListCtrl.prototype.justAlert = function (myAlert) {
+            if (myAlert == 1) {
+                alert("Open Issue in JIRA");
+            }
+        };
         ItemListCtrl.$inject = ["dataAccessService"];
         return ItemListCtrl;
     })();

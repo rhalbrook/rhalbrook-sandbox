@@ -17,6 +17,17 @@ var services;
             });
             return deferred.promise;
         };
+        JiraDataAccessService.prototype.getIssue = function () {
+            console.log("Inside getIssue");
+            var deferred = this.$q.defer();
+            this.$httpService.get("http://localhost:3000/cors_proxy?url=https://consolo.atlassian.net/rest/agile/latest/board/11/epic")
+                .then(function (response) {
+                deferred.resolve(response.data['issue']);
+            }).catch(function (reason) {
+                deferred.reject(reason);
+            });
+            return deferred.promise;
+        };
         return JiraDataAccessService;
     })();
     services.JiraDataAccessService = JiraDataAccessService;

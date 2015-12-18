@@ -1,7 +1,83 @@
+html {
+       overflow-y: scroll;
+}
 .bottomBorder {
 	border-bottom: solid;
 	border-width: 1px;
 	border-color: #e6e6e6;
+}
+.headerContainer{
+    /*background-color: pink;*/
+    height: 80px;
+    width: 60%;
+    display : flex;
+    align-items : flex-end;
+    float: left;
+}
+.headerContent {
+    font-size:80%;
+    float: left;
+}
+.headerSlantContainer{
+    /*background-color: yellow;*/
+    height: 60px;
+    width: 40%;
+    display : flex;
+    align-items : flex-end;
+    padding-bottom: 25px;
+    float: left;
+}
+.headerSlantContent {
+    width:14%;
+    display:block;
+    font-size:80%;
+    -webkit-transform: rotate(-45deg); 
+    -moz-transform: rotate(-45deg); 
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); 
+    vertical-align: bottom;
+}
+.accordionContainer{
+    height: 48px;
+    width: 60.5%;
+    background-color: #F8F8F8;
+    /*background-color: #E3F2FD;*/
+    display : flex;
+    align-items : center;
+    float: left;
+}
+.accordionContent {
+    font-size:80%;
+    float: left;
+}
+.accordionValuesContainer{
+    height: 48px;
+    width: 39.5%;
+    background-color: #F8F8F8;
+    /*background-color: #E3F2FD;*/
+    display : flex;
+    align-items : center;
+    float: left;
+
+}
+.accordionValuesContent {
+    width: 20%;
+    font-size:80%;
+    float: left;
+}
+.accordionSubContainer {
+    clear:both; 
+    position:reletive; 
+    height: 30px;
+    width: 95%;
+    display: flex;
+    /*background-color: lightgrey;*/
+    align-items : center;
+    float: right;
+}
+.accordionSubHeader {
+    font-size:80%;
+    float: left;
+    /*background-color: lightblue;*/
 }
 a:link {
     text-decoration: none;

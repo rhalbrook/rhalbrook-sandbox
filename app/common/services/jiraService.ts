@@ -17,5 +17,17 @@ module services {
                 });
             return deferred.promise;
         }
+        
+        getIssue(): ng.IPromise<interfaces.IIssue[]> {
+            console.log("Inside getIssue");
+            var deferred = this.$q.defer();
+            this.$httpService.get("http://localhost:3000/cors_proxy?url=https://consolo.atlassian.net/rest/agile/latest/board/11/epic")
+                .then(response => {
+                    deferred.resolve(response.data['issue'] as interfaces.IIssue[]);
+                }).catch(reason => {
+                    deferred.reject(reason);
+                });
+            return deferred.promise;
+        }
     }
 }
