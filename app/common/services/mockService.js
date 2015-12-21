@@ -414,7 +414,7 @@ var services;
             var server = sinon.fakeServer.create();
             server.respondWith(this.$fakeServer.getHandler());
         }
-        // GET Epic
+        // GET Epics
         MockDataAccessService.prototype.getEpics = function () {
             var deferred = this.$q.defer();
             console.log("fetching epics...");
@@ -441,8 +441,8 @@ var services;
             req.send(null);
             return deferred.promise;
         };
-        // GET Issue
-        MockDataAccessService.prototype.getIssue = function () {
+        // GET Issues
+        MockDataAccessService.prototype.getIssues = function () {
             var deferred = this.$q.defer();
             console.log("fetching issues...");
             var req = new XMLHttpRequest();

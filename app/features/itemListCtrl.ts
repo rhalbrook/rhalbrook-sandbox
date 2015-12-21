@@ -1,15 +1,15 @@
 module controllers {
 	export interface ItemListModel {
 		title: string;
-		epics: interfaces.IEpic[];
-		issues: interfaces.IIssue[];
+		epics: interfaces.IEpics[];
+		issues: interfaces.IIssues[];
 		justAlert(myAlert): void;
 	}
 
 	export class ItemListCtrl implements ItemListModel {
 		title: string;
-		epics: interfaces.IEpic[];
-		issues: interfaces.IIssue[];
+		epics: interfaces.IEpics[];
+		issues: interfaces.IIssues[];
 		private _search: string;
 
 		get search(): string {
@@ -31,14 +31,14 @@ module controllers {
 
 			this.$myService = dataAccessService;
 
-			this.$myService.getEpics().then((data: interfaces.IEpic[]) => {
+			this.$myService.getEpics().then((data: interfaces.IEpics[]) => {
 				console.log("received " + data.length + " Epics in response.");
 				this.epics = data;
 			}, (err) => {
 				console.error(err);
 			});
 
-			this.$myService.getIssue().then((data: interfaces.IIssue[]) => {
+			this.$myService.getIssues().then((data: interfaces.IIssues[]) => {
 				console.log("received " + data.length + " Issues in response.");
 				this.issues = data;
 			}, (err) => {

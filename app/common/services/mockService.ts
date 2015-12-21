@@ -418,8 +418,8 @@ module services {
             server.respondWith(this.$fakeServer.getHandler());
         }
 
-        // GET Epic
-        getEpics(): ng.IPromise<interfaces.IEpic[]> {
+        // GET Epics
+        getEpics(): ng.IPromise<interfaces.IEpics[]> {
             var deferred = this.$q.defer();
             console.log("fetching epics...");
             var req = new XMLHttpRequest();
@@ -444,8 +444,8 @@ module services {
             return deferred.promise;
         }
         
-        // GET Issue
-        getIssue(): ng.IPromise<interfaces.IIssue[]> {
+        // GET Issues
+        getIssues(): ng.IPromise<interfaces.IIssues[]> {
             var deferred = this.$q.defer();
             console.log("fetching issues...");
             var req = new XMLHttpRequest();

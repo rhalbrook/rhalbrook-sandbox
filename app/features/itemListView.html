@@ -22,16 +22,16 @@
                                 <div class="headerContainer">
                                         <div class="headerContent" style="width:9%;"></div>
                                         <div class="headerContent" style="width:11%; bottom:0px;">
-                                                <a href="#" ng-click="sortEpic = 'key'; sortEpicReverse = !sortEpicReverse">
+                                                <a href="#" ng-click="sortEpics = 'key'; sortEpicsReverse = !sortEpicsReverse">
                                         EPIC ID
-                                        <span ng-show="sortEpic == 'key' && !sortEpicReverse" class="fa fa-caret-down"></span>
-                                        <span ng-show="sortEpic == 'key' && sortEpicReverse" class="fa fa-caret-up"></span>
+                                        <span ng-show="sortEpics == 'key' && !sortEpicsReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortEpics == 'key' && sortEpicsReverse" class="fa fa-caret-up"></span>
                                         </a></div>
                                         <div class="headerContent" style="width:30%; bottom:0px;">
-                                                <a href="#" ng-click="sortEpic = 'name'; sortEpicReverse = !sortEpicReverse">
+                                                <a href="#" ng-click="sortEpics = 'name'; sortEpicsReverse = !sortEpicsReverse">
                                         EPIC NAME
-                                        <span ng-show="sortEpic == 'name' && !sortEpicReverse" class="fa fa-caret-down"></span>
-                                        <span ng-show="sortEpic == 'name' && sortEpicReverse" class="fa fa-caret-up"></span>
+                                        <span ng-show="sortEpics == 'name' && !sortEpicsReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortEpics == 'name' && sortEpicsReverse" class="fa fa-caret-up"></span>
                                         </a></div>
                                 </div>
                                 <div class="headerSlantContainer">
@@ -45,15 +45,15 @@
                                 </div>
                         </div>
                         <!-- ITEM GRID - LOOPED CONTENT -->
-                        <div ng-repeat="epic in x.epics | filter:x.search | orderBy:sortEpic:sortEpicReverse" class="bottomBorder animated fadeIn"
+                        <div ng-repeat="epics in x.epics | filter:x.search | orderBy:sortEpics:sortEpicsReverse" class="bottomBorder animated fadeIn"
                         style="outline:none;">
                                 <div class="accordionContainer" ng-click="expandArea = !expandArea" style="outline:none; cursor:default;">
                                         <div class="accordionContent" style="width:4%; height:48px; display:flex; align-items:center; padding-left: 25px; background-color:#57AFE5;">
                                                 <span ng-show="!expandArea" class="fa fa-caret-right"></span>
                                                 <span ng-show="expandArea" class="fa fa-caret-down"></span>
                                         </div>
-                                        <div class="accordionContent" style="width:10%; padding-left:10px;">{{ epic.key }}</div>
-                                        <div class="accordionContent" style="width:86%; padding-left:10px;">{{ epic.name }}</div>
+                                        <div class="accordionContent" style="width:10%; padding-left:10px;">{{ epics.key }}</div>
+                                        <div class="accordionContent" style="width:86%; padding-left:10px;">{{ epics.name }}</div>
                                 </div>
                                 <div class="accordionValuesContainer" ng-click="expandArea = !expandArea" style="outline:none;">
                                         <div class="accordionValuesContent">17</div>
@@ -66,19 +66,19 @@
                                 </div>
                                 <div class="bottomBorder accordionSubContainer" ng-show="expandArea">
                                         <div class="accordionSubHeader" style="width:7%; bottom:0px;">
-                                                <a href="#" ng-click="sortIssue = 'key'; sortIssueReverse = !sortIssueReverse">
+                                                <a href="#" ng-click="sortIssues = 'key'; sortIssuesReverse = !sortIssuesReverse">
                                         ISSUE ID
-                                        <span ng-show="sortIssue == 'key' && !sortIssueReverse" class="fa fa-caret-down"></span>
-                                        <span ng-show="sortIssue == 'key' && sortIssueReverse" class="fa fa-caret-up"></span>
+                                        <span ng-show="sortIssues == 'key' && !sortIssuesReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortIssues == 'key' && sortIssuesReverse" class="fa fa-caret-up"></span>
                                         </a></div>
                                         <div class="accordionSubHeader" style="width:88%; bottom:0px;">
-                                                <a href="#" ng-click="sortIssue = 'fields.summary'; sortIssueReverse = !sortIssueReverse">
+                                                <a href="#" ng-click="sortIssues = 'fields.summary'; sortIssuesReverse = !sortIssuesReverse">
                                         ISSUE NAME
-                                        <span ng-show="sortIssue == 'fields.summary' && !sortIssueReverse" class="fa fa-caret-down"></span>
-                                        <span ng-show="sortIssue == 'fields.summary' && sortIssueReverse" class="fa fa-caret-up"></span>
+                                        <span ng-show="sortIssues == 'fields.summary' && !sortIssuesReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortIssues == 'fields.summary' && sortIssuesReverse" class="fa fa-caret-up"></span>
                                         </a></div>
                                 </div>
-                                <div class="bottomBorder accordionSubContainer" ng-show="expandArea" ng-repeat="issues in x.issues | orderBy:sortIssue:sortIssueReverse">
+                                <div class="bottomBorder accordionSubContainer" ng-show="expandArea" ng-repeat="issues in x.issues | orderBy:sortIssues:sortIssuesReverse">
                                         <div class="accordionSubHeader" style="width:7%; outline:none; cursor:pointer;" ng-click="x.justAlert(1);">{{ issues.key }}</div>
                                         <div class="accordionSubHeader" style="width:88%; outline:none; cursor:pointer;" ng-click="x.justAlert(1);">{{ issues.fields.summary }}</div>
                                 </div>

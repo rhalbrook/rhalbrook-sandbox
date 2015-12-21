@@ -15,7 +15,7 @@ var controllers;
             }, function (err) {
                 console.error(err);
             });
-            this.$myService.getIssue().then(function (data) {
+            this.$myService.getIssues().then(function (data) {
                 console.log("received " + data.length + " Issues in response.");
                 _this.issues = data;
             }, function (err) {

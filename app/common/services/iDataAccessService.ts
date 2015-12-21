@@ -4,7 +4,7 @@ module interfaces {
         key: string;
     }
 
-    export interface IEpic {
+    export interface IEpics {
         id: number;
         key: string;
         self: string;
@@ -18,7 +18,7 @@ module interfaces {
         summary: string;
         cuctomfield_10008: string;
     }
-    export interface IIssue {
+    export interface IIssues {
         id: number;
         self: string;
         key: string;
@@ -26,8 +26,8 @@ module interfaces {
     }	
 
 	export interface IDataAccessService {
-		getEpics(): ng.IPromise<IEpic[]>;
-        getIssue(): ng.IPromise<IIssue[]>;
+		getEpics(): ng.IPromise<IEpics[]>;
+        getIssues(): ng.IPromise<IIssues[]>;
 	}
 
 	export interface IItemResource {
