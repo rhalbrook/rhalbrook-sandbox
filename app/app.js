@@ -2,7 +2,7 @@ var sinon, FakeRest;
 (function () {
     var app;
     app = angular.module("itemListBldr", ["ngAnimate", "ngMaterial", "ngMdIcons"]);
-    app.service("dataAccessService", services.MockDataAccessService);
+    app.service("dataAccessService", services.JiraDataAccessService);
     // theme format
     // check with sean on if there is a more typescript way to doing this below code
     app.config(function ($mdThemingProvider) {
