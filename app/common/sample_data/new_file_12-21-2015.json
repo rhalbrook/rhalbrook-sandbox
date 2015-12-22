@@ -1,0 +1,326 @@
+{
+    "maxResults": 50,
+    "startAt": 0,
+    "isLast": true,
+    "values": [
+        {
+            "id": 15593,
+            "key": "CD-1581",
+            "self": "https://consolo.atlassian.net/rest/agile/1.0/epic/15593",
+            "name": "Physicians Orders - Phase 2",
+            "summary": "Physician Orders Phase 2",
+            "color": {
+                "key": "color_1"
+            },
+            "done": false
+        },
+        {
+            "id": 12476,
+            "key": "CD-76",
+            "self": "https://consolo.atlassian.net/rest/agile/1.0/epic/12476",
+            "name": "Admin Tasks",
+            "summary": "all issues that a just process / admin / whatever",
+            "color": {
+                "key": "color_8"
+            },
+            "done": false
+        },
+        {
+            "id": 13485,
+            "key": "CD-646",
+            "self": "https://consolo.atlassian.net/rest/agile/1.0/epic/13485",
+            "name": "Vacation",
+            "summary": "vacation days",
+            "color": {
+                "key": "color_2"
+            },
+            "done": true
+        },
+        {
+            "id": 13352,
+            "key": "CD-566",
+            "self": "https://consolo.atlassian.net/rest/agile/1.0/epic/13352",
+            "name": "Medispan database files",
+            "summary": "Import all medispan database files into medispan microservice and integrate functionality into Consolo Core",
+            "color": {
+                "key": "color_1"
+            },
+            "done": true
+        },
+        {
+            "id": 12463,
+            "key": "CD-63",
+            "self": "https://consolo.atlassian.net/rest/agile/1.0/epic/12463",
+            "name": "Aide Assistant / Tracker MVP",
+            "summary": "All tasks related to getting Aide Assistant into people's hands",
+            "color": {
+                "key": "color_1"
+            },
+            "done": false
+        },
+        {
+            "id": 12513,
+            "key": "CD-111",
+            "self": "https://consolo.atlassian.net/rest/agile/1.0/epic/12513",
+            "name": "Discharge Summary",
+            "summary": "Discharge Summary  (reference only 13285)",
+            "color": {
+                "key": "color_1"
+            },
+            "done": true
+        },
+        {
+            "id": 12464,
+            "key": "CD-64",
+            "self": "https://consolo.atlassian.net/rest/agile/1.0/epic/12464",
+            "name": "Supply Chain Requirements Gathering / Design Stage",
+            "summary": "All issues related to getting supply chain scoped and estimated",
+            "color": {
+                "key": "color_3"
+            },
+            "done": false
+        },
+        {
+            "id": 12465,
+            "key": "CD-65",
+            "self": "https://consolo.atlassian.net/rest/agile/1.0/epic/12465",
+            "name": "Vagrant / Docker Adoption 1.0",
+            "summary": "all tasks related to getting vagrant / docker ready for developers to use it for the development environments",
+            "color": {
+                "key": "color_5"
+            },
+            "done": true
+        },
+        {
+            "id": 12466,
+            "key": "CD-66",
+            "self": "https://consolo.atlassian.net/rest/agile/1.0/epic/12466",
+            "name": "Vagrant / Docker Adoption 2.0 - TEST",
+            "summary": "get vagrant docker viable for use for running tests",
+            "color": {
+                "key": "color_7"
+            },
+            "done": true
+        },
+        {
+            "id": 12467,
+            "key": "CD-67",
+            "self": "https://consolo.atlassian.net/rest/agile/1.0/epic/12467",
+            "name": "Claims / Billing",
+            "summary": "claims billing stuff",
+            "color": {
+                "key": "color_9"
+            },
+            "done": false
+        },
+        {
+            "id": 15719,
+            "key": "CD-1617",
+            "self": "https://consolo.atlassian.net/rest/agile/1.0/epic/15719",
+            "name": "Rate Reform Jan 1",
+            "summary": "All items related to 2-Tier billing Jan 1",
+            "color": {
+                "key": "color_4"
+            },
+            "done": false
+        },
+        {
+            "id": 12468,
+            "key": "CD-68",
+            "self": "https://consolo.atlassian.net/rest/agile/1.0/epic/12468",
+            "name": "LDAP / WebMethods Setup - Phase 1.0",
+            "summary": "get deltas streaming from consolo core to ldap via webmethods",
+            "color": {
+                "key": "color_2"
+            },
+            "done": true
+        },
+        {
+            "id": 12469,
+            "key": "CD-69",
+            "self": "https://consolo.atlassian.net/rest/agile/1.0/epic/12469",
+            "name": "Core: Support",
+            "summary": "all issues related to supporting, fixing, maintaining consolo core",
+            "color": {
+                "key": "color_4"
+            },
+            "done": true
+        },
+        {
+            "id": 12470,
+            "key": "CD-70",
+            "self": "https://consolo.atlassian.net/rest/agile/1.0/epic/12470",
+            "name": "BI / Datawarehouse MVP",
+            "summary": "all issues related to getting the data warehouse and bi going smoothly for launch",
+            "color": {
+                "key": "color_6"
+            },
+            "done": false
+        },
+        {
+            "id": 13110,
+            "key": "CD-403",
+            "self": "https://consolo.atlassian.net/rest/agile/1.0/epic/13110",
+            "name": "Consolo CORE: Support",
+            "summary": "All tickets related to supporting consolo core",
+            "color": {
+                "key": "color_5"
+            },
+            "done": false
+        },
+        {
+            "id": 12676,
+            "key": "CD-191",
+            "self": "https://consolo.atlassian.net/rest/agile/1.0/epic/12676",
+            "name": "Angular Clinical Charts Pt. 1",
+            "summary": "All issues related to creating a new version of clinical charts build w/ AngularJS",
+            "color": {
+                "key": "color_1"
+            },
+            "done": false
+        },
+        {
+            "id": 15700,
+            "key": "CD-1600",
+            "self": "https://consolo.atlassian.net/rest/agile/1.0/epic/15700",
+            "name": "Angular Clinical Charts Pt. 2",
+            "summary": "all items related to second phase of angular clinical charts project",
+            "color": {
+                "key": "color_2"
+            },
+            "done": false
+        },
+        {
+            "id": 13041,
+            "key": "CD-390",
+            "self": "https://consolo.atlassian.net/rest/agile/1.0/epic/13041",
+            "name": "Surescripts Phase 1",
+            "summary": "All tasks related to surescripts initial integration",
+            "color": {
+                "key": "color_1"
+            },
+            "done": true
+        },
+        {
+            "id": 13108,
+            "key": "CD-401",
+            "self": "https://consolo.atlassian.net/rest/agile/1.0/epic/13108",
+            "name": "Audits",
+            "summary": "All tasks related to the recent updates/splitting out of Audits",
+            "color": {
+                "key": "color_1"
+            },
+            "done": false
+        },
+        {
+            "id": 13542,
+            "key": "CD-683",
+            "self": "https://consolo.atlassian.net/rest/agile/1.0/epic/13542",
+            "name": "Bereavement Enhancements Project",
+            "summary": "Bereavement Project",
+            "color": {
+                "key": "color_2"
+            },
+            "done": true
+        },
+        {
+            "id": 13700,
+            "key": "CD-795",
+            "self": "https://consolo.atlassian.net/rest/agile/1.0/epic/13700",
+            "name": "Time and Payroll improvements",
+            "summary": "Align Consolo Payroll process more closely with major payroll vendors and help hospices better manage Time, Payroll and Users",
+            "color": {
+                "key": "color_1"
+            },
+            "done": false
+        },
+        {
+            "id": 14252,
+            "key": "CD-981",
+            "self": "https://consolo.atlassian.net/rest/agile/1.0/epic/14252",
+            "name": "LDAP/SSO Phase 2",
+            "summary": "Consolo SSO Poral w/LDAP",
+            "color": {
+                "key": "color_1"
+            },
+            "done": false
+        },
+        {
+            "id": 15543,
+            "key": "CD-1546",
+            "self": "https://consolo.atlassian.net/rest/agile/1.0/epic/15543",
+            "name": "Compassus / Advantage Support",
+            "summary": "All items related to helping Compassus / Advantage as we pursue their continuing business",
+            "color": {
+                "key": "color_1"
+            },
+            "done": false
+        },
+        {
+            "id": 15544,
+            "key": "CD-1547",
+            "self": "https://consolo.atlassian.net/rest/agile/1.0/epic/15544",
+            "name": "Report Optimization",
+            "summary": "all items related to dramatically improving our reports (that bog things down 1st of the month)",
+            "color": {
+                "key": "color_3"
+            },
+            "done": false
+        },
+        {
+            "id": 15545,
+            "key": "CD-1548",
+            "self": "https://consolo.atlassian.net/rest/agile/1.0/epic/15545",
+            "name": "Medications / Surescripts",
+            "summary": "All issues related to big medications project",
+            "color": {
+                "key": "color_5"
+            },
+            "done": false
+        },
+        {
+            "id": 15546,
+            "key": "CD-1549",
+            "self": "https://consolo.atlassian.net/rest/agile/1.0/epic/15546",
+            "name": "Support / Bug Issues",
+            "summary": "All items that aren't a part of a larger project but are coming from support",
+            "color": {
+                "key": "color_7"
+            },
+            "done": false
+        },
+        {
+            "id": 15547,
+            "key": "CD-1550",
+            "self": "https://consolo.atlassian.net/rest/agile/1.0/epic/15547",
+            "name": "Halcyon / LHC Support",
+            "summary": "all tickets specifically related to supporting LHC and/or Halcyon",
+            "color": {
+                "key": "color_9"
+            },
+            "done": false
+        },
+        {
+            "id": 15594,
+            "key": "CD-1582",
+            "self": "https://consolo.atlassian.net/rest/agile/1.0/epic/15594",
+            "name": "Physicians Orders - Phase 3",
+            "summary": "Physcian Orders Phase 3",
+            "color": {
+                "key": "color_1"
+            },
+            "done": false
+        },
+        {
+            "id": 15732,
+            "key": "CD-1630",
+            "self": "https://consolo.atlassian.net/rest/agile/1.0/epic/15732",
+            "name": "New Dev Onboarding",
+            "summary": "All tickets related to getting our new hires up to speed",
+            "color": {
+                "key": "color_6"
+            },
+            "done": false
+        }
+    ]
+}

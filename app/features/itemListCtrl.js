@@ -12,12 +12,17 @@ var controllers;
             this.$myService.getEpics().then(function (data) {
                 console.log("received " + data.length + " Epics in response.");
                 _this.epics = data;
-            }, function (err) {
-                console.error(err);
-            });
-            this.$myService.getIssues().then(function (data) {
-                console.log("received " + data.length + " Issues in response.");
-                _this.issues = data;
+                // START EPIC LOOP
+                for (var key in _this.epics) {
+                    // GET ISSUES    
+                    _this.$myService.getIssues(_this.epics[key].id).then(function (data) {
+                        console.log("received " + data.length + " Issues in response.");
+                        _this.issues = data;
+                    }, function (err) {
+                        console.error(err);
+                    });
+                }
+                // END EPIC LOOP
             }, function (err) {
                 console.error(err);
             });

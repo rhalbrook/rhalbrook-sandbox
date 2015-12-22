@@ -11,7 +11,7 @@ module services {
             var deferred = this.$q.defer();
             this.$httpService.get("http://localhost:3000/cors_proxy?url=https://consolo.atlassian.net/rest/agile/latest/board/11/epic")
                 .then(response => {
-                    deferred.resolve(response.data['epics'] as interfaces.IEpics[]);
+                    deferred.resolve(response.data['values'] as interfaces.IEpics[]);
                 }).catch(reason => {
                     deferred.reject(reason);
                 });
@@ -20,10 +20,10 @@ module services {
         }
         
         // STILL HAVE TO WORK THROUGH GETTING THE ISSUES FOR A SPECIFIC EPIC
-        getIssues(): ng.IPromise<interfaces.IIssues[]> {
+        getIssues(epicId): ng.IPromise<interfaces.IIssues[]> {
             console.log("Inside getIssues");
             var deferred = this.$q.defer();
-            this.$httpService.get("http://localhost:3000/cors_proxy?url=https://consolo.atlassian.net/rest/agile/latest/board/11/epic/issue")
+            this.$httpService.get("http://localhost:3000/cors_proxy?url=https://consolo.atlassian.net/rest/agile/latest/board/11/epic/" + epicId + "/issue?maxResults=10000")
                 .then(response => {
                     deferred.resolve(response.data['issues'] as interfaces.IIssues[]);
                 }).catch(reason => {

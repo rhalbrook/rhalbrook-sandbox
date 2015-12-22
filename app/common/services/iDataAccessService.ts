@@ -27,7 +27,7 @@ module interfaces {
 
 	export interface IDataAccessService {
 		getEpics(): ng.IPromise<IEpics[]>;
-        getIssues(): ng.IPromise<IIssues[]>;
+        getIssues(epicId): ng.IPromise<IIssues[]>;
 	}
 
 	export interface IItemResource {

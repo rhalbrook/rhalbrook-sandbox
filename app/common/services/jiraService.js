@@ -11,7 +11,7 @@ var services;
             var deferred = this.$q.defer();
             this.$httpService.get("http://localhost:3000/cors_proxy?url=https://consolo.atlassian.net/rest/agile/latest/board/11/epic")
                 .then(function (response) {
-                deferred.resolve(response.data['epics']);
+                deferred.resolve(response.data['values']);
             }).catch(function (reason) {
                 deferred.reject(reason);
             });
@@ -19,10 +19,10 @@ var services;
             return deferred.promise;
         };
         // STILL HAVE TO WORK THROUGH GETTING THE ISSUES FOR A SPECIFIC EPIC
-        JiraDataAccessService.prototype.getIssues = function () {
+        JiraDataAccessService.prototype.getIssues = function (epicId) {
             console.log("Inside getIssues");
             var deferred = this.$q.defer();
-            this.$httpService.get("http://localhost:3000/cors_proxy?url=https://consolo.atlassian.net/rest/agile/latest/board/11/epic/issue")
+            this.$httpService.get("http://localhost:3000/cors_proxy?url=https://consolo.atlassian.net/rest/agile/latest/board/11/epic/" + epicId + "/issue?maxResults=10000")
                 .then(function (response) {
                 deferred.resolve(response.data['issues']);
             }).catch(function (reason) {
