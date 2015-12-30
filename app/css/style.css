@@ -68,6 +68,7 @@ html {
     clear:both; 
     position:reletive; 
     height: 30px;
+    overflow-x: visible;
     width: 95%;
     display: flex;
     /*background-color: lightgrey;*/
