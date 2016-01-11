@@ -1,100 +1,129 @@
 <div class="panel panel-primary" ng-controller="ItemListCtrl as x" ng-cloak>
-        <md-content class="md-padding" layout="row" layout-wrap layout-align="center start">
-                <md-card class="md-whiteframe-6dp" style="width: 1200px;">
-                        <md-toolbar style="background-color:#003366;">
-                                <!-- TOP NAVBAR -->
-                                <div class="md-toolbar-tools">
-                                        <h2 class="md-toolbar-tools">
-                        <span>{{::x.title}}</span>
-                        </h2>
-                                </div>
-                        </md-toolbar>
-                        <!-- SEARCH FIELD -->
-                        <div align="right" style="width:98%; height:50px;">
-                                <md-input-container md-no-float>
-                                        </br>
-                                        <input ng-model="x.search" class="md-body-1" style="width:20%;" placeholder="Search">
-                                </md-input-container>
-                        </div>
-                        <!-- ITEM GRID -->
-                        <!-- ITEM GRID - HEADER -->
-                        <div class="bottomBorder animated fadeIn">
-                                <div class="headerContainer">
-                                        <div class="headerContent" style="width:9%;"></div>
-                                        <div class="headerContent" style="width:11%; bottom:0px;">
-                                                <a href="#" ng-click="sortEpics = 'key'; sortEpicsReverse = !sortEpicsReverse">
-                                        EPIC ID
-                                        <span ng-show="sortEpics == 'key' && !sortEpicsReverse" class="fa fa-caret-down"></span>
-                                        <span ng-show="sortEpics == 'key' && sortEpicsReverse" class="fa fa-caret-up"></span>
-                                        </a></div>
-                                        <div class="headerContent" style="width:30%; bottom:0px;">
-                                                <a href="#" ng-click="sortEpics = 'name'; sortEpicsReverse = !sortEpicsReverse">
-                                        EPIC NAME
-                                        <span ng-show="sortEpics == 'name' && !sortEpicsReverse" class="fa fa-caret-down"></span>
-                                        <span ng-show="sortEpics == 'name' && sortEpicsReverse" class="fa fa-caret-up"></span>
-                                        </a></div>
-                                </div>
-                                <div class="headerSlantContainer">
-                                        <div class="headerSlantContent">Total</div>
-                                        <div class="headerSlantContent">Blocked</div>
-                                        <div class="headerSlantContent">Open</div>
-                                        <div class="headerSlantContent">In Progress</div>
-                                        <div class="headerSlantContent">Testing</div>
-                                        <div class="headerSlantContent">Passed</div>
-                                        <div class="headerSlantContent">Closed</div>
-                                </div>
-                        </div>
-                        <!-- ITEM GRID - LOOPED CONTENT -->
-                        <div ng-repeat="epic in x.epics | filter:x.search | orderBy:sortEpics:sortEpicsReverse" class="bottomBorder animated fadeIn"
-                        style="outline:none;">
-                                <div class="accordionContainer" ng-click="expandArea = !expandArea" style="outline:none; cursor:default;">
-                                        <div class="accordionContent" style="width:4%; height:48px; display:flex; align-items:center; padding-left: 25px; background-color:#57AFE5;">
-                                                <span ng-show="!expandArea" class="fa fa-caret-right"></span>
-                                                <span ng-show="expandArea" class="fa fa-caret-down"></span>
-                                        </div>
-                                        <div class="accordionContent" style="width:10%; padding-left:10px;">{{ epic.key }}</div>
-                                        <div class="accordionContent" style="width:86%; padding-left:10px;">{{ epic.name }}</div>
-                                </div>
-                                <div class="accordionValuesContainer" ng-click="expandArea = !expandArea" style="outline:none;">
-                                        <div class="accordionValuesContent">{{ epic.Total }}</div>
-                                        <div class="accordionValuesContent">{{ epic.Blocked }}</div>
-                                        <div class="accordionValuesContent">{{ epic.Open }}</div>
-                                        <div class="accordionValuesContent">{{ epic.inProgress }}</div>
-                                        <div class="accordionValuesContent">{{ epic.readyToTest }}</div>
-                                        <div class="accordionValuesContent">{{ epic.passedTests }}</div>
-                                        <div class="accordionValuesContent">{{ epic.Closed }}</div>
-                                </div>
-                                <div class="bottomBorder accordionSubContainer" ng-show="expandArea">
-                                        <div ng-show="epic.Total > 0" class="accordionSubHeader" style="width:7%; bottom:0px;">
-                                                <a href="#" ng-click="sortIssues = 'key'; sortIssuesReverse = !sortIssuesReverse">
-                                        ISSUE ID
-                                        <span ng-show="sortIssues == 'key' && !sortIssuesReverse" class="fa fa-caret-down"></span>
-                                        <span ng-show="sortIssues == 'key' && sortIssuesReverse" class="fa fa-caret-up"></span>
-                                        </a></div>
-                                        <div ng-show="epic.Total > 0" class="accordionSubHeader" style="width:88%; bottom:0px;">
-                                                <a href="#" ng-click="sortIssues = 'fields.summary'; sortIssuesReverse = !sortIssuesReverse">
-                                        ISSUE NAME
-                                        <span ng-show="sortIssues == 'fields.summary' && !sortIssuesReverse" class="fa fa-caret-down"></span>
-                                        <span ng-show="sortIssues == 'fields.summary' && sortIssuesReverse" class="fa fa-caret-up"></span>
-                                        </a></div>
-                                    <div ng-show="epic.Total < 1" class="accordionSubHeader">
-                                        There are no Issues for this Epic
-                                    </div>
-                                </div>
-                                <div class="bottomBorder accordionSubContainer" ng-show="expandArea" ng-repeat="issue in epic.issues | filter:x.search | orderBy:sortIssues:sortIssuesReverse">
-                                        <div ng-show="epic.Total > 0" class="accordionSubHeader" style="width:7%; outline:none;"><a href="https://consolo.atlassian.net/browse/{{ issue.key }}" target="_blank" style="color:black;">{{ issue.key }}</a></div>
-                                        <div ng-show="epic.Total > 0" class="accordionSubHeader" style="width:51.5%; outline:none;"><a href="https://consolo.atlassian.net/browse/{{ issue.key }}" target="_blank" style="color:black;">{{ issue.fields.summary | limitTo:95 }}<span ng-show="issue.fields.summary.length > 95">...</span></a></div>
-                                        <div ng-show="epic.Total > 0" class="accordionSubHeader" style="width:6%; outline:none;"></div>
-                                        <div ng-show="epic.Total > 0" class="accordionSubHeader" style="width:6%; outline:none; color:grey;"><i ng-show="issue.fields.status.id == 10001" class="fa fa-check-circle"><md-tooltip md-direction="right">Blocked</md-tooltip></i></div>
-                                        <div ng-show="epic.Total > 0" class="accordionSubHeader" style="width:6%; outline:none; color:grey;"><i ng-show="issue.fields.status.id == 1 || issue.fields.status.id == 4" class="fa fa-check-circle"><md-tooltip md-direction="right">Open</md-tooltip></i></div>
-                                        <div ng-show="epic.Total > 0" class="accordionSubHeader" style="width:6%; outline:none; color:grey;"><i ng-show="issue.fields.status.id == 3" class="fa fa-check-circle"><md-tooltip md-direction="right">In Progress</md-tooltip></i></div>
-                                        <div ng-show="epic.Total > 0" class="accordionSubHeader" style="width:6%; outline:none; color:grey;"><i ng-show="issue.fields.status.id == 10300" class="fa fa-check-circle"><md-tooltip md-direction="right">Testing</md-tooltip></i></div>
-                                        <div ng-show="epic.Total > 0" class="accordionSubHeader" style="width:6%; outline:none; color:grey;"><i ng-show="issue.fields.status.id == 10302" class="fa fa-check-circle"><md-tooltip md-direction="right">Passed</md-tooltip></i></div>
-                                        <div ng-show="epic.Total > 0" class="accordionSubHeader" style="width:6%; outline:none; color:grey;"><i ng-show="issue.fields.status.id == 6 || issue.fields.status.id == 10301" class="fa fa-check-circle"><md-tooltip md-direction="right">Closed</md-tooltip></i></div>
-                                </div>
-                        </div>
-                        </br>
-                        </br>
-                </md-card>
-        </md-content>
+  <div ng-hide="toggleView">
+    <md-content class="md-padding" layout="row" layout-wrap layout-align="center start">
+      <md-card class="md-whiteframe-6dp" style="width: 1200px;">
+        <md-toolbar style="background-color:#003366;">
+          <!-- TOP NAVBAR -->
+          <div class="md-toolbar-tools">
+            <h2 class="md-toolbar-tools" style="width:100%;">
+            <span style="width:88%;"><a href="https://consolo.atlassian.net/secure/Dashboard.jspa" target="_blank" style="color:white;">{{::x.title}}</a></span>
+            <span style="width:12%;" align="left" ng-click="toggleView=true"><a href="#" style="color:white; cursor:pointer; outline:none;"><i class="fa fa-bar-chart"></i> View Chart</a></span>
+            </h2>
+          </div>
+        </md-toolbar>
+        <!-- SEARCH FIELD -->
+        <div align="right" style="width:100%; height:70px; vertical-align: middle; overflow:float;">
+          </br>
+          <div align="left" style="width:73%; height:48px; padding-left:32px; padding-top:20px; float:left;"><a href="https://consolo.atlassian.net/secure/RapidBoard.jspa?rapidView=11&projectKey=CD&view=detail" target="_blank"
+            style="color:grey;"><i ng-if="x.latestSprintName" class="fa fa-calendar"></i> {{ ::x.latestSprintName }}</a></div>
+          <div style="width:20%; height:48px; padding-top:10px; float:left;">
+            <md-input-container md-no-float>
+              <input ng-model="x.searchTerm" ng-change="x.doSearch()" ng-model-options="{ debounce: 600 }" class="md-body-1" placeholder="Search">
+            </md-input-container>
+          </div>
+          <div align="left" style="width:4%; height:48px; padding-top:20px; float:left;">
+            <div ng-show="x.searchTerm" class="fa fa-times-circle-o" align="left" style="color:grey; cursor:pointer; outline:none;" ng-click="x.searchTerm=''; x.doSearch()"></div>
+            <div ng-hide="x.searchTerm" class="fa fa-times-circle-o" align="left" style="color:white;"></div>
+          </div>
+        </div>
+        <!-- ITEM GRID -->
+        <!-- ITEM GRID - HEADER -->
+        <div class="bottomBorder animated fadeIn">
+          <div class="headerContainer">
+            <div class="headerContent" style="width:9%;"></div>
+            <div class="headerContent" style="width:11%; bottom:0px;">
+              <a href="#" ng-click="sortEpics = 'key'; sortEpicsReverse = !sortEpicsReverse">
+              EPIC ID
+              <span ng-show="sortEpics == 'key' && !sortEpicsReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortEpics == 'key' && sortEpicsReverse" class="fa fa-caret-up"></span>
+              </a></div>
+            <div class="headerContent" style="width:30%; bottom:0px;">
+              <a href="#" ng-click="sortEpics = 'name'; sortEpicsReverse = !sortEpicsReverse">
+              EPIC NAME
+              <span ng-show="sortEpics == 'name' && !sortEpicsReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortEpics == 'name' && sortEpicsReverse" class="fa fa-caret-up"></span>
+              </a></div>
+          </div>
+          <div class="headerSlantContainer">
+            <div class="headerSlantContent">Total</div>
+            <div class="headerSlantContent">Blocked</div>
+            <div class="headerSlantContent">Open</div>
+            <div class="headerSlantContent">In Progress</div>
+            <div class="headerSlantContent">Testing</div>
+            <div class="headerSlantContent">Passed</div>
+            <div class="headerSlantContent">Closed</div>
+          </div>
+        </div>
+        <!-- ITEM GRID - LOOPED CONTENT -->
+        <div ng-repeat="epic in x.filteredEpics | orderBy:sortEpics:sortEpicsReverse" class="bottomBorder animated fadeIn" style="outline:none;">
+          <div class="accordionContainer" ng-click="expandArea = !expandArea" style="outline:none; cursor:default;">
+            <div class="accordionContent" style="width:4%; height:48px; display:flex; align-items:center; padding-left: 25px; background-color:#57AFE5;">
+              <span ng-show="!expandArea" class="fa fa-caret-right"></span>
+              <span ng-show="expandArea" class="fa fa-caret-down"></span>
+            </div>
+            <div class="accordionContent" style="width:10%; padding-left:10px;">{{ epic.key }}</div>
+            <div class="accordionContent" style="width:86%; padding-left:10px;">{{ epic.name }}</div>
+          </div>
+          <div class="accordionValuesContainer" ng-click="expandArea = !expandArea" style="outline:none;">
+            <div class="accordionValuesContent">{{ epic.Total }}</div>
+            <div class="accordionValuesContent">{{ epic.Blocked }}</div>
+            <div class="accordionValuesContent">{{ epic.Open }}</div>
+            <div class="accordionValuesContent">{{ epic.inProgress }}</div>
+            <div class="accordionValuesContent">{{ epic.readyToTest }}</div>
+            <div class="accordionValuesContent">{{ epic.passedTests }}</div>
+            <div class="accordionValuesContent">{{ epic.Closed }}</div>
+          </div>
+          <div class="bottomBorder accordionSubContainer" ng-show="expandArea">
+            <div ng-show="epic.Total > 0" class="accordionSubHeader" style="width:7%; bottom:0px;">
+              <a href="#" ng-click="sortIssues = 'key'; sortIssuesReverse = !sortIssuesReverse">
+              ISSUE ID
+              <span ng-show="sortIssues == 'key' && !sortIssuesReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortIssues == 'key' && sortIssuesReverse" class="fa fa-caret-up"></span>
+              </a></div>
+            <div ng-show="epic.Total > 0" class="accordionSubHeader" style="width:88%; bottom:0px;">
+              <a href="#" ng-click="sortIssues = 'fields.summary'; sortIssuesReverse = !sortIssuesReverse">
+              ISSUE NAME
+              <span ng-show="sortIssues == 'fields.summary' && !sortIssuesReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortIssues == 'fields.summary' && sortIssuesReverse" class="fa fa-caret-up"></span>
+              </a></div>
+            <div ng-show="epic.Total < 1" class="accordionSubHeader">
+              There are no Issues for this Epic
+            </div>
+          </div>
+          <div class="bottomBorder accordionSubContainer" ng-show="expandArea" ng-repeat="issue in epic.issues | orderBy:sortIssues:sortIssuesReverse">
+            <div ng-show="epic.Total > 0" class="accordionSubHeader" style="width:7%; outline:none;"><a href="https://consolo.atlassian.net/browse/{{ issue.key }}" target="_blank" style="color:black;">{{ issue.key }}</a></div>
+            <div ng-show="epic.Total > 0" class="accordionSubHeader" style="width:51.5%; outline:none;"><a href="https://consolo.atlassian.net/browse/{{ issue.key }}" target="_blank" style="color:black;">{{ issue.fields.summary | limitTo:95 }}<span ng-show="issue.fields.summary.length > 95">...</span></a></div>
+            <div ng-show="epic.Total > 0" class="accordionSubHeader" style="width:6%; outline:none;"></div>
+            <div ng-show="epic.Total > 0" class="accordionSubHeader" style="width:6%; outline:none; color:grey;"><i ng-show="issue.fields.status.id == 10001" class="fa fa-check-circle"><md-tooltip md-direction="right">Blocked</md-tooltip></i></div>
+            <div ng-show="epic.Total > 0" class="accordionSubHeader" style="width:6%; outline:none; color:grey;"><i ng-show="issue.fields.status.id == 1 || issue.fields.status.id == 4" class="fa fa-check-circle"><md-tooltip md-direction="right">Open</md-tooltip></i></div>
+            <div ng-show="epic.Total > 0" class="accordionSubHeader" style="width:6%; outline:none; color:grey;"><i ng-show="issue.fields.status.id == 3" class="fa fa-check-circle"><md-tooltip md-direction="right">In Progress</md-tooltip></i></div>
+            <div ng-show="epic.Total > 0" class="accordionSubHeader" style="width:6%; outline:none; color:grey;"><i ng-show="issue.fields.status.id == 10300" class="fa fa-check-circle"><md-tooltip md-direction="right">Testing</md-tooltip></i></div>
+            <div ng-show="epic.Total > 0" class="accordionSubHeader" style="width:6%; outline:none; color:grey;"><i ng-show="issue.fields.status.id == 10302" class="fa fa-check-circle"><md-tooltip md-direction="right">Passed</md-tooltip></i></div>
+            <div ng-show="epic.Total > 0" class="accordionSubHeader" style="width:6%; outline:none; color:grey;"><i ng-show="issue.fields.status.id == 6 || issue.fields.status.id == 10301" class="fa fa-check-circle"><md-tooltip md-direction="right">Closed</md-tooltip></i></div>
+          </div>
+        </div>
+        </br>
+        </br>
+      </md-card>
+    </md-content>
+  </div>
+  <div ng-show="toggleView">
+    <md-content class="md-padding" layout="row" layout-wrap layout-align="center start">
+      <md-card class="md-whiteframe-6dp" style="width: 1200px; height: 500px;">
+        <md-toolbar style="background-color:#003366;">
+          <!-- TOP NAVBAR -->
+          <div class="md-toolbar-tools">
+            <h2 class="md-toolbar-tools" style="width:100%;">
+              <span style="width:88%;"><a href="https://consolo.atlassian.net/secure/Dashboard.jspa" target="_blank" style="color:white;">{{::x.title}}</a></span>
+              <span style="width:12%;" align="left" ng-click="toggleView=false"><a href="#" style="color:white; cursor:pointer; outline:none;"><i class="fa fa-list"></i> View List</a></span>
+              </h2>
+          </div>
+        </md-toolbar>
+        <div align="center" style="height:600px; padding: 20px;"><iframe src="app/features/chart_examples/chart1.html" height="400" width="850" frameborder="0" scrolling="no"></iframe></div>
+      </md-card>
+    </md-content>
+  </div>
+</div>
+<div class="copyrights">
+  <center>COPYRIGHT © 2002-2016 · CONSOLO SERVICES GROUP, INC.</center>
 </div>

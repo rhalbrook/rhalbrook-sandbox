@@ -1,10 +1,10 @@
 module interfaces {
-	
-	export interface Color {
+
+    export interface Color {
         key: string;
     }
-    
-    export interface IEpics {
+
+    export interface IEpic {
         id: number;
         key: string;
         self: string;
@@ -12,7 +12,7 @@ module interfaces {
         summary: string;
         color: Color;
         done: boolean;
-        issues: interfaces.IIssues[];
+        issues: interfaces.IIssue[];
         Total: number;
         Blocked: number;
         Open: number;
@@ -21,29 +21,46 @@ module interfaces {
         passedTests: number;
         Closed: number;
     }
-    
-    export interface Fields{
+
+    export interface Fields {
         summary: string;
         cuctomfield_10008: string;
         status: Status;
+        sprint: Sprint;
     }
     interface Status {
         id: string;
         name: string;
     }
-    export interface IIssues {
+    interface Sprint {
+        id: number;
+        name: string;
+    }
+    export interface IIssue {
         id: number;
         self: string;
         key: string;
         fields: Fields;
-    }	
+    }
 
-	export interface IDataAccessService {
-		getEpics(): ng.IPromise<IEpics[]>;
-        getIssues(epicId): ng.IPromise<IIssues[]>;
-	}
+    export interface ISprint {
+        id: number;
+        self: string;
+        state: string;
+        name: string;
+        startDate: Date;
+        endDate: Date;
+        completeDate: Date;
+        originBoardId: number;
+    }
 
-	export interface IItemResource {
-	}
+    export interface IDataAccessService {
+        getEpics(): ng.IPromise<IEpic[]>;
+        getIssues(epicId): ng.IPromise<IIssue[]>;
+        getSprints(): ng.IPromise<ISprint[]>;
+    }
+
+    export interface IItemResource {
+    }
 }
 

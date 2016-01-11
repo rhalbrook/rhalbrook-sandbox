@@ -95,3 +95,31 @@ a:hover {
 a:active {
     text-decoration: none;
 }
+
+
+
+
+
+.charts{
+    font: 10px sans-serif;
+}
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+.bar {
+  fill: steelblue;
+}
+.x.axis path {
+  display: none;
+}
+
+
+
+.copyrights{
+    font-size:10px;
+    color: grey;
+    height: 48px;
+}

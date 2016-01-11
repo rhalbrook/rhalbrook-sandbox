@@ -7,7 +7,7 @@ module services {
 
         constructor(private $http: ng.IHttpService, private $q: ng.IQService) {
             // this.$httpService = $http;
-            
+
             this.$fakeServer = new FakeRest.Server();
             this.$fakeServer.toggleLogging();
             var data = {
@@ -419,7 +419,7 @@ module services {
         }
 
         // GET Epics
-        getEpics(): ng.IPromise<interfaces.IEpics[]> {
+        getEpics(): ng.IPromise<interfaces.IEpic[]> {
             var deferred = this.$q.defer();
             console.log("fetching epics...");
             var req = new XMLHttpRequest();
@@ -443,9 +443,9 @@ module services {
             req.send(null);
             return deferred.promise;
         }
-        
+
         // GET Issues
-        getIssues(): ng.IPromise<interfaces.IIssues[]> {
+        getIssues(): ng.IPromise<interfaces.IIssue[]> {
             var deferred = this.$q.defer();
             console.log("fetching issues...");
             var req = new XMLHttpRequest();
