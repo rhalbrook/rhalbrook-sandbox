@@ -3,8 +3,10 @@ module controllers {
     title: string;
     latestSprintName: string;
     epics: interfaces.IEpic[];
+    filteredEpics: interfaces.IEpic[];
     issues: interfaces.IIssue[];
     sprints: interfaces.ISprint[];
+    searchTerm: string;
   }
 
   export class ItemListCtrl implements ItemListModel {

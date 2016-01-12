@@ -468,6 +468,33 @@ var services;
             req.send(null);
             return deferred.promise;
         };
+        // GET Sprints
+        MockDataAccessService.prototype.getSprints = function () {
+            var deferred = this.$q.defer();
+            console.log("fetching sprints...");
+            var req = new XMLHttpRequest();
+            req.open("GET", "/sprints", false);
+            req.onload = function (e) {
+                if (req.readyState === 4) {
+                    if (req.status === 200) {
+                        deferred.resolve(JSON.parse(req.responseText));
+                    }
+                    else {
+                        console.error(req.statusText);
+                        deferred.reject(req.statusText);
+                    }
+                }
+                else {
+                    debugger;
+                }
+            };
+            req.onerror = function (e) {
+                console.error(req.statusText);
+                deferred.reject(e);
+            };
+            req.send(null);
+            return deferred.promise;
+        };
         return MockDataAccessService;
     })();
     services.MockDataAccessService = MockDataAccessService;

@@ -47,6 +47,7 @@ var controllers;
             });
         }
         ;
+        // CALCULATE TOTALS
         ItemListCtrl.prototype.calculateTotals = function (epic) {
             epic.Total = 0;
             epic.Blocked = 0;
@@ -55,10 +56,11 @@ var controllers;
             epic.readyToTest = 0;
             epic.passedTests = 0;
             epic.Closed = 0;
+            // CHECK STATUS TOTALS
             epic.issues.forEach(function (issue) {
-                // Total Issues
+                // TOTAL ISSUES
                 epic.Total++;
-                // Checking for STATUS
+                // CHECKING FOR STATUS
                 if (issue.fields.status.id === '10001') {
                     epic.Blocked++;
                 }
@@ -79,6 +81,7 @@ var controllers;
                 }
             });
         };
+        // DO SEARCH FUNCTION INPUT ONCHANGE
         ItemListCtrl.prototype.doSearch = function () {
             var _this = this;
             console.log("search: " + this.searchTerm);
@@ -89,6 +92,7 @@ var controllers;
                 _this.filterEpic(filteredEpic);
             });
         };
+        // FILTERS EMPTY EPICS FROM SHOWING
         ItemListCtrl.prototype.filterEpic = function (epic) {
             epic.issues = this.$filter('filter')(epic.issues, this.searchTerm);
             if (epic.issues.length > 0 || this.searchTerm === '') {
