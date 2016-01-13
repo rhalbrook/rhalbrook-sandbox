@@ -14,5 +14,4 @@ var sinon, FakeRest;
   // register your controllers / directives here
   app.controller("ItemListCtrl", controllers.ItemListCtrl);
 
-
 })();
