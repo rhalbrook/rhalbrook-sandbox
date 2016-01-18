@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>JIRA Chart 2</title>
+  <script src="../../../../js/angular/angular.js"></script>
+  <script src="../../../../js/d3/d3.js"></script>
+  <script src="../../../../js/nvd3/nv.d3.js"></script>
+  <script src="../../../../js/angular-nvd3/angular-nvd3.js"></script>
+  <script src="app.js"></script>
+  <link rel="stylesheet" href="../../../../js/nvd3/nv.d3.css">
+</head>
+
+<body>
+  <div ng-app="myApp" style="width:100%;">
+    <div ng-controller="myCtrl">
+      <nvd3 options="options" data="data"></nvd3>
+    </div>
+  </div>
+</body>
+
+</html>

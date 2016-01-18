@@ -1,6 +1,7 @@
 module controllers {
   export interface ItemListModel {
-    title: string;
+    listTitle: string;
+    chartTitle: string;
     latestSprintName: string;
     epics: interfaces.IEpic[];
     filteredEpics: interfaces.IEpic[];
@@ -10,20 +11,78 @@ module controllers {
   }
 
   export class ItemListCtrl implements ItemListModel {
-    title: string;
+    listTitle: string;
+    chartTitle: string;
     latestSprintName: string;
     epics: interfaces.IEpic[];
     filteredEpics: interfaces.IEpic[];
     issues: interfaces.IIssue[];
     sprints: interfaces.ISprint[];
     searchTerm: string;
+    showChart: boolean = false;
+    chartData: any[];
+    options: any;
 
     public $myService: interfaces.IDataAccessService;
 
     static $inject = ['dataAccessService', '$filter'];
 
     constructor(private dataAccessService: interfaces.IDataAccessService, private $filter: ng.IFilterService) {
-      this.title = "JIRA Filter Views";
+      this.options = {
+        chart: {
+          type: 'multiBarChart',
+          height: 450,
+          margin: {
+            top: 20,
+            right: 20,
+            bottom: 99,
+            left: 55
+          },
+          clipEdge: true,
+          duration: 500,
+          stacked: true,
+          reduceXTicks: false,
+          xAxis: {
+            axisLabel: 'EPICS',
+            staggerLabels: false,
+            rotateLabels: 45,
+            rotateYLabel: true,
+          },
+          yAxis: {
+            axisLabel: 'ISSUES',
+            axisLabelDistance: -10
+          }
+        }
+      };
+
+      this.chartData = [
+        {
+          key: "Blocked",
+          values: []
+        },
+        {
+          key: "Open",
+          values: []
+        },
+        {
+          key: "inProgress",
+          values: []
+        },
+        {
+          key: "readyToTest",
+          values: []
+        },
+        {
+          key: "passedTests",
+          values: []
+        },
+        {
+          key: "Closed",
+          values: []
+        }
+      ];
+      this.listTitle = "JIRA Filter Views";
+      this.chartTitle = "JIRA Epic / Issues Chart"
       this.epics = [];
       this.issues = [];
       this.sprints = [];
@@ -75,7 +134,7 @@ module controllers {
       epic.readyToTest = 0;
       epic.passedTests = 0;
       epic.Closed = 0;
-    // CHECK STATUS TOTALS
+      // CHECK STATUS TOTALS
       epic.issues.forEach((issue: interfaces.IIssue) => {
         // TOTAL ISSUES
         epic.Total++;
@@ -99,6 +158,20 @@ module controllers {
           epic.Closed++;
         }
       });
+      // Chart Data
+      var blocked = this.$filter('filter')(this.chartData, {key: "Blocked"});
+      blocked[0].values.push({"x": epic.key, "y": epic.Blocked});
+      var open = this.$filter('filter')(this.chartData, {key: "Open"});
+      open[0].values.push({"x": epic.key, "y": epic.Open});
+      var inprogress = this.$filter('filter')(this.chartData, {key: "InProgress"});
+      inprogress[0].values.push({"x": epic.key, "y": epic.inProgress});
+      var readytotest = this.$filter('filter')(this.chartData, {key: "readyToTest"});
+      readytotest[0].values.push({"x": epic.key, "y": epic.readyToTest});
+      var passedtests = this.$filter('filter')(this.chartData, {key: "passedTests"});
+      passedtests[0].values.push({"x": epic.key, "y": epic.passedTests});
+      var closed = this.$filter('filter')(this.chartData, {key: "Closed"});
+      closed[0].values.push({"x": epic.key, "y": epic.Closed});
+      console.log(this.chartData);
     }
     // DO SEARCH FUNCTION INPUT ONCHANGE
     doSearch(): void {
@@ -118,6 +191,10 @@ module controllers {
         this.calculateTotals(epic);
         this.filteredEpics.push(epic);
       }
+    }
+    toggleView(): void {
+      this.showChart = !this.showChart;
+      window.dispatchEvent(new Event('resize'));
     }
   }
 }

@@ -1,13 +1,13 @@
 <div class="panel panel-primary" ng-controller="ItemListCtrl as x" ng-cloak>
-  <div ng-hide="toggleView">
+  <div ng-hide="x.showChart">
     <md-content class="md-padding" layout="row" layout-wrap layout-align="center start">
       <md-card class="md-whiteframe-6dp" style="width: 1200px;">
         <md-toolbar style="background-color:#003366;">
           <!-- TOP NAVBAR -->
           <div class="md-toolbar-tools">
             <h2 class="md-toolbar-tools" style="width:100%;">
-            <span style="width:88%;"><a href="https://consolo.atlassian.net/secure/Dashboard.jspa" target="_blank" style="color:white;">{{::x.title}}</a></span>
-            <span style="width:12%;" align="left" ng-click="toggleView=true"><a href="#" style="color:white; cursor:pointer; outline:none;"><i class="fa fa-bar-chart"></i> View Chart</a></span>
+            <span style="width:88%;"><a href="https://consolo.atlassian.net/secure/Dashboard.jspa" target="_blank" style="color:white;">{{::x.listTitle}}</a></span>
+            <span style="width:12%;" align="left" ng-click="x.toggleView()"><a href="#" style="color:white; cursor:pointer; outline:none;"><i class="fa fa-bar-chart"></i> View Chart</a></span>
             </h2>
           </div>
         </md-toolbar>
@@ -107,20 +107,24 @@
       </md-card>
     </md-content>
   </div>
-  <div ng-show="toggleView">
+  <div ng-if="x.showChart">
     <md-content class="md-padding" layout="row" layout-wrap layout-align="center start">
-      <md-card class="md-whiteframe-6dp" style="width: 1200px; height: 600px;">
+      <md-card class="md-whiteframe-6dp" style="width: 1200px; height: 650px;">
         <md-toolbar style="background-color:#003366;">
           <!-- TOP NAVBAR -->
           <div class="md-toolbar-tools">
             <h2 class="md-toolbar-tools" style="width:100%;">
-              <span style="width:88%;"><a href="https://consolo.atlassian.net/secure/Dashboard.jspa" target="_blank" style="color:white;">{{::x.title}}</a></span>
-              <span style="width:12%;" align="left" ng-click="toggleView=false"><a href="#" style="color:white; cursor:pointer; outline:none;"><i class="fa fa-list"></i> View List</a></span>
+              <span style="width:88%;"><a href="https://consolo.atlassian.net/secure/Dashboard.jspa" target="_blank" style="color:white;">{{::x.listTitle}}</a></span>
+              <span style="width:12%;" align="left" ng-click="x.toggleView()"><a href="#" style="color:white; cursor:pointer; outline:none;"><i class="fa fa-list"></i> View List</a></span>
               </h2>
           </div>
         </md-toolbar>
-        </br>
-        <div align="center" style="height:600px; padding: 20px;"><iframe src="app/features/charts/chart.html" height="500" width="900" frameborder="0" scrolling="no"></iframe></div>
+        <div align="center" style="height:650px; padding: 20px;">
+            <div style="height: 500px; width: 90%; padding: 10px;">
+              <p>{{::x.chartTitle}}</p>
+              <nvd3 options="x.options" data="x.chartData"></nvd3>
+            </div>
+        </div>
       </md-card>
     </md-content>
   </div>

@@ -1,7 +1,7 @@
 var sinon, FakeRest;
 (function () {
     var app;
-    app = angular.module("itemListBldr", ["ngAnimate", "ngMaterial", "ngMdIcons"]);
+    app = angular.module("itemListBldr", ["ngAnimate", "ngMaterial", "ngMdIcons", "nvd3"]);
     app.service("dataAccessService", services.JiraDataAccessService);
     // theme format
     app.config(function ($mdThemingProvider) {

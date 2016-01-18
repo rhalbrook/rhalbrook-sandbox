@@ -1,6 +1,5 @@
 var app = angular.module('myApp', ['nvd3']);
-
-app.controller('myCtrl', function($scope) {
+app.controller('myCtrl', function ($scope) {
     $scope.options = {
         chart: {
             type: 'multiBarChart',
@@ -16,11 +15,11 @@ app.controller('myCtrl', function($scope) {
             stacked: true,
             reduceXTicks: false,
             xAxis: {
-                axisLabel: 'Epics',
+                axisLabel: 'EPICS',
                 rotateLabels: 0
             },
             yAxis: {
-                axisLabel: 'Issues',
+                axisLabel: 'ISSUES',
                 axisLabelDistance: -10
             }
         }
@@ -440,8 +439,6 @@ app.controller('myCtrl', function($scope) {
                 }
             ]
         }
-    ]
-    console.log($scope.data);
-
-
+    ];
+    //console.log($scope.data);
 });
