@@ -1,4 +1,5 @@
 <div class="panel panel-primary" ng-controller="ItemListCtrl as x" ng-cloak>
+  <!-- LIST VIEW -->
   <div ng-hide="x.showChart">
     <md-content class="md-padding" layout="row" layout-wrap layout-align="center start">
       <md-card class="md-whiteframe-6dp" style="width: 1200px;">
@@ -107,6 +108,7 @@
       </md-card>
     </md-content>
   </div>
+  <!-- CHART VIEW -->
   <div ng-if="x.showChart">
     <md-content class="md-padding" layout="row" layout-wrap layout-align="center start">
       <md-card class="md-whiteframe-6dp" style="width: 1200px; height: 650px;">
@@ -119,11 +121,12 @@
               </h2>
           </div>
         </md-toolbar>
+        <!-- CHART -->
         <div align="center" style="height:650px; padding: 20px;">
-            <div style="height: 500px; width: 90%; padding: 10px;">
-              <p>{{::x.chartTitle}}</p>
-              <nvd3 options="x.options" data="x.chartData"></nvd3>
-            </div>
+          <div style="height: 500px; width: 90%; padding: 10px;">
+            <p>{{::x.chartTitle}}</p>
+            <nvd3 options="x.options" data="x.chartData"></nvd3>
+          </div>
         </div>
       </md-card>
     </md-content>

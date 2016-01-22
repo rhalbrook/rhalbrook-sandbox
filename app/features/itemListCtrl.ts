@@ -28,6 +28,7 @@ module controllers {
     static $inject = ['dataAccessService', '$filter'];
 
     constructor(private dataAccessService: interfaces.IDataAccessService, private $filter: ng.IFilterService) {
+      // D3 CHART
       this.options = {
         chart: {
           type: 'multiBarChart',
@@ -54,7 +55,7 @@ module controllers {
           }
         }
       };
-
+      // CHART DATA BUILD - STATUS
       this.chartData = [
         {
           key: "Blocked",
@@ -158,7 +159,7 @@ module controllers {
           epic.Closed++;
         }
       });
-      // Chart Data
+      // CHART DATA BUILD
       var blocked = this.$filter('filter')(this.chartData, {key: "Blocked"});
       blocked[0].values.push({"x": epic.key, "y": epic.Blocked});
       var open = this.$filter('filter')(this.chartData, {key: "Open"});
@@ -192,6 +193,7 @@ module controllers {
         this.filteredEpics.push(epic);
       }
     }
+    // TOGGLE VIEW BETWEEN LIST AND CHART
     toggleView(): void {
       this.showChart = !this.showChart;
       window.dispatchEvent(new Event('resize'));
