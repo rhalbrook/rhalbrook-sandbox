@@ -9,10 +9,10 @@
 1. Run bower in same folder as your bower.json
 ``` bower install```
 1. Run bower-installer to get the key files into your app (i.e. src) folder
-``` bower-installer```
+``` bower-installer ```
 1.  Now look in app/ -- should see these folders which contain the bower managed dependencies
-  * app/js
-  * app/css
+    * app/js
+    * app/css
 1.  There's also a folder called bower_components which is the local copy of ALL the files for each dependency
 1.  Bower.json is the file that defines all this stuff (for more info read up on bower itself)
 1.  To add a new dependency to bower (e.g. fakerest)
